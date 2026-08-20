@@ -204,3 +204,31 @@
     transform: scale(1.08);
 }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.getElementById('orionSidebar');
+        if (sidebar) {
+            sidebar.addEventListener('mouseleave', function() {
+                // Quando a barra lateral volta para o modo colapsado (75px), recolher todas as seções abertas
+                if (!sidebar.classList.contains('pinned')) {
+                    const openCollapses = sidebar.querySelectorAll('.collapse.show');
+                    openCollapses.forEach(el => {
+                        if (window.bootstrap && bootstrap.Collapse) {
+                            const bsCollapse = bootstrap.Collapse.getInstance(el) || new bootstrap.Collapse(el, { toggle: false });
+                            bsCollapse.hide();
+                        } else {
+                            el.classList.remove('show');
+                        }
+                    });
+
+                    const collapseButtons = sidebar.querySelectorAll('[data-bs-toggle="collapse"]');
+                    collapseButtons.forEach(btn => {
+                        btn.setAttribute('aria-expanded', 'false');
+                        btn.classList.add('collapsed');
+                    });
+                }
+            });
+        }
+    });
+</script>
