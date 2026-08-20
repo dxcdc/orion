@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <!-- Menu Navegação Card Estilo CDC VPN -->
+        <!-- Menu Navegação Organizado em Categorias -->
         <div class="nav-accordion d-flex flex-column gap-2" id="sidebarMenu">
             
             <!-- Item 1: Boas-Vindas / Dashboard -->
@@ -18,9 +18,9 @@
                 <span class="sidebar-text-content fs-14 fw-bold text-white">Boas-Vindas</span>
             </a>
 
-            <!-- Item 2: Gestão de Preservação & Governança (Dropdown Accordion) -->
+            <!-- Categoria 1: Gestão de Preservação -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white {% if active_page in ['checkins', 'perimetro'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="true">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white {% if active_page in ['checkins', 'perimetro', 'tutores', 'canais_apoio', 'registros'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="true">
                     <div class="d-flex align-items-center gap-3">
                         <i class="ri-shield-user-line fs-22 icon-orange min-w-icon"></i>
                         <span class="sidebar-text-content fs-14 fw-bold text-white">Gestão de Preservação</span>
@@ -38,39 +38,53 @@
                             <i class="ri-compass-3-line fs-16 icon-cyan"></i>
                             <span class="sidebar-text-content fs-13">Perímetro de Conforto</span>
                         </a>
+                        <a href="{{ url_for('main.tutores') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'tutores' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Rede de Tutores">
+                            <i class="ri-contacts-book-2-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Rede de Tutores</span>
+                        </a>
+                        <a href="{{ url_for('main.canais_apoio') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'canais_apoio' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Canais Silenciosos">
+                            <i class="ri-mail-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Canais Silenciosos</span>
+                        </a>
+                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Telemetria & Registros">
+                            <i class="ri-bar-chart-2-line fs-16 icon-emerald"></i>
+                            <span class="sidebar-text-content fs-13">Telemetria & Registros</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 3: Rede de Tutores -->
-            <a href="{{ url_for('main.tutores') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'tutores' %}active-card{% endif %}" title="Rede de Tutores">
-                <i class="ri-contacts-book-2-line fs-22 icon-cyan min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Rede de Tutores</span>
-            </a>
-
-            <!-- Item 4: Canais Silenciosos de Apoio -->
-            <a href="{{ url_for('main.canais_apoio') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'canais_apoio' %}active-card{% endif %}" title="Canais Silenciosos">
-                <i class="ri-mail-line fs-22 icon-cyan min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Canais Silenciosos</span>
-            </a>
-
-            <!-- Item 5: Telemetria & Registros -->
-            <a href="{{ url_for('main.registros') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'registros' %}active-card{% endif %}" title="Telemetria & Registros">
-                <i class="ri-bar-chart-2-line fs-22 icon-emerald min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Telemetria & Registros</span>
-            </a>
-
-            <!-- Item 6: Governança & Documentos -->
-            <a href="{{ url_for('main.documentos') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'documentos' %}active-card{% endif %}" title="Documentos Protegidos">
-                <i class="ri-folder-shield-2-line fs-22 icon-yellow min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Documentos Protegidos</span>
-            </a>
-
-            <!-- Item 7: Ecossistema de APIs -->
-            <a href="{{ url_for('main.apis_painel') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'apis' %}active-card{% endif %}" title="Integrações & APIs">
-                <i class="ri-links-line fs-22 icon-blue min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Integrações & APIs</span>
-            </a>
+            <!-- Categoria 2: Administração (Idêntica à imagem de referência) -->
+            <div class="sidebar-accordion-group">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white {% if active_page in ['admin_guia', 'central_testes', 'apis', 'protocolos', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuAdministracao" aria-expanded="true">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="ri-settings-3-line fs-22 icon-yellow min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">Administração</span>
+                    </div>
+                    <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
+                </button>
+                
+                <div class="collapse show" id="menuAdministracao" data-bs-parent="#sidebarMenu">
+                    <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
+                        <a href="{{ url_for('main.admin_guia') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'admin_guia' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Guia Admin & 2FA">
+                            <i class="ri-settings-5-line fs-16 icon-yellow"></i>
+                            <span class="sidebar-text-content fs-13">Guia Admin & 2FA</span>
+                        </a>
+                        <a href="{{ url_for('main.central_testes') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'central_testes' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Central de Testes">
+                            <i class="ri-flask-line fs-16 icon-emerald"></i>
+                            <span class="sidebar-text-content fs-13">Central de Testes</span>
+                        </a>
+                        <a href="{{ url_for('main.apis_painel') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'apis' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Integrações & Webhooks">
+                            <i class="ri-plug-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Integrações & Webhooks</span>
+                        </a>
+                        <a href="{{ url_for('main.protocolos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'protocolos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Facilitações Operacionais">
+                            <i class="ri-flashlight-line fs-16 icon-yellow"></i>
+                            <span class="sidebar-text-content fs-13">Facilitações Operacionais</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -149,6 +149,40 @@ def relatorios():
         session["user"] = "fvier"
     return render_template("relatorios.html", active_page="relatorios")
 
+@main_bp.route("/admin-guia")
+def admin_guia():
+    """Renderiza o Guia Admin & Autenticação 2FA."""
+    if not session.get("user"):
+        session["user"] = "fvier"
+    items = [
+        {"codigo": "ADM-01", "evento": "Configuração de Token TOTP / 2FA Corporativo", "horario": "Ativo", "status": "Habilitado"},
+        {"codigo": "ADM-02", "evento": "Políticas de Acesso & Controle de Sessões Admin", "horario": "Sincronizado", "status": "Válido"},
+        {"codigo": "ADM-03", "evento": "Auditoria de Credenciais & Rotatividade de Chaves", "horario": "Automático", "status": "Protegido"},
+    ]
+    return render_template("modulo_preservacao.html", 
+                           title="Guia Admin & 2FA", 
+                           subtitle="Parâmetros de segurança, controle de acesso e autenticação em dois fatores",
+                           icon="ri-settings-5-line",
+                           active_page="admin_guia",
+                           items=items)
+
+@main_bp.route("/central-testes")
+def central_testes():
+    """Renderiza a Central de Testes & Simulação de Sinais."""
+    if not session.get("user"):
+        session["user"] = "fvier"
+    items = [
+        {"codigo": "TST-101", "evento": "Simulação de Disparo de Sinal Silencioso", "horario": "Último Teste: OK", "status": "Sucesso"},
+        {"codigo": "TST-102", "evento": "Validação de Webhook com Central de Apoio", "horario": "Último Teste: OK", "status": "Verificado"},
+        {"codigo": "TST-103", "evento": "Teste de Notificação Camuflada por E-mail", "horario": "Último Teste: OK", "status": "Entregue"},
+    ]
+    return render_template("modulo_preservacao.html", 
+                           title="Central de Testes & Simulação", 
+                           subtitle="Ambiente de validação segura para rotinas de emergência e sinais de suporte",
+                           icon="ri-flask-line",
+                           active_page="central_testes",
+                           items=items)
+
 @main_bp.route("/api-info")
 def api_info():
     return jsonify({
