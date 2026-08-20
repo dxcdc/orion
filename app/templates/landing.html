@@ -13,6 +13,8 @@
         --orion-emerald: #10b981;
         --orion-cyan: #06b6d4;
         --orion-blue: #3b82f6;
+        --orion-coral: #ef4444;
+        --orion-gold: #f59e0b;
     }
 
     body {
@@ -45,42 +47,6 @@
         border-bottom: 1px solid var(--orion-border);
     }
 
-    /* Glassmorphism Cards */
-    .glass-card {
-        background: var(--orion-glass);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--orion-border);
-        border-radius: 1.25rem;
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Pulse Indicator */
-    .pulse-ring {
-        position: relative;
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: var(--orion-emerald);
-        border-radius: 50%;
-    }
-    .pulse-ring::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: var(--orion-emerald);
-        border-radius: 50%;
-        animation: pulse-animation 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse-animation {
-        0% { transform: scale(1); opacity: 0.8; }
-        100% { transform: scale(3.2); opacity: 0; }
-    }
-
     /* Animated Rotating Text (+) */
     .animated-text-span {
         display: inline-block;
@@ -110,6 +76,156 @@
     .btn-pill-action:hover {
         transform: translateY(-2px);
         box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+    }
+
+    /* ======================================================
+       3D ORBITAL SYSTEM WITH CDC LOGO CORE & PLANETS 
+    ====================================================== */
+    .orbit-universe-stage {
+        position: relative;
+        width: 100%;
+        height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+    }
+
+    /* Floating 3D Central Core (CDC Emblem) */
+    .orbit-core-3d {
+        position: relative;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #ffffff 0%, #1f2937 70%, #0b0f19 100%);
+        box-shadow: 
+            0 0 35px rgba(239, 68, 68, 0.35),
+            0 0 65px rgba(16, 185, 129, 0.4),
+            0 0 95px rgba(6, 182, 212, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        animation: float-3d-core 5s ease-in-out infinite;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .orbit-core-3d img {
+        height: 70px;
+        filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+        transition: transform 0.4s ease;
+    }
+
+    .orbit-core-3d:hover img {
+        transform: scale(1.12) rotate(4deg);
+    }
+
+    @keyframes float-3d-core {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    /* Elliptical 3D Orbit Rings */
+    .orbit-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px dashed rgba(255, 255, 255, 0.16);
+        transform-style: preserve-3d;
+        pointer-events: none;
+    }
+
+    .orbit-ring-1 {
+        width: 250px;
+        height: 250px;
+        transform: rotateX(65deg) rotateY(-18deg);
+        animation: rotate-ring-1 20s linear infinite;
+    }
+
+    .orbit-ring-2 {
+        width: 360px;
+        height: 360px;
+        transform: rotateX(65deg) rotateY(18deg);
+        animation: rotate-ring-2 30s linear infinite reverse;
+    }
+
+    .orbit-ring-3 {
+        width: 460px;
+        height: 460px;
+        transform: rotateX(70deg) rotateY(0deg);
+        animation: rotate-ring-3 40s linear infinite;
+    }
+
+    @keyframes rotate-ring-1 {
+        0% { transform: rotateX(65deg) rotateY(-18deg) rotate(0deg); }
+        100% { transform: rotateX(65deg) rotateY(-18deg) rotate(360deg); }
+    }
+
+    @keyframes rotate-ring-2 {
+        0% { transform: rotateX(65deg) rotateY(18deg) rotate(0deg); }
+        100% { transform: rotateX(65deg) rotateY(18deg) rotate(360deg); }
+    }
+
+    @keyframes rotate-ring-3 {
+        0% { transform: rotateX(70deg) rotateY(0deg) rotate(0deg); }
+        100% { transform: rotateX(70deg) rotateY(0deg) rotate(360deg); }
+    }
+
+    /* Orbiting Planets in CDC Colors */
+    .orbit-planet {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .orbit-planet:hover {
+        transform: scale(1.4);
+        z-index: 25;
+    }
+
+    /* Planet Coral (Red - Logo CDC) */
+    .planet-coral {
+        width: 28px;
+        height: 28px;
+        background: radial-gradient(circle at 30% 30%, #fda4af, #ef4444, #9f1239);
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.9), inset -2px -2px 6px rgba(0,0,0,0.6);
+        top: -14px;
+        left: 50%;
+        margin-left: -14px;
+    }
+
+    /* Planet Gold (Yellow - Logo CDC) */
+    .planet-gold {
+        width: 32px;
+        height: 32px;
+        background: radial-gradient(circle at 30% 30%, #fef08a, #f59e0b, #b45309);
+        box-shadow: 0 0 30px rgba(245, 158, 11, 0.9), inset -2px -2px 6px rgba(0,0,0,0.6);
+        top: 50%;
+        left: -16px;
+        margin-top: -16px;
+    }
+
+    /* Planet Emerald (Green - Logo CDC) */
+    .planet-emerald {
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle at 30% 30%, #a7f3d0, #10b981, #047857);
+        box-shadow: 0 0 35px rgba(16, 185, 129, 0.9), inset -2px -2px 6px rgba(0,0,0,0.6);
+        top: 50%;
+        right: -18px;
+        margin-top: -18px;
+    }
+
+    /* Planet Cyan (Blue - Logo CDC) */
+    .planet-cyan {
+        width: 30px;
+        height: 30px;
+        background: radial-gradient(circle at 30% 30%, #67e8f9, #06b6d4, #0e7490);
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.9), inset -2px -2px 6px rgba(0,0,0,0.6);
+        bottom: -15px;
+        left: 50%;
+        margin-left: -15px;
     }
 </style>
 {% endblock %}
@@ -194,78 +310,31 @@
                     </div>
                 </div>
 
-                <!-- Coluna Visual de Monitoramento de Status (Interactive Live Widget) -->
+                <!-- Coluna Visual: Sistema 3D de Órbitas Planetais com o Logo CDC -->
                 <div class="col-lg-5">
-                    <div class="glass-card p-4 shadow-2xl position-relative overflow-hidden">
+                    <div class="orbit-universe-stage">
                         
-                        <!-- Header do Widget -->
-                        <div class="d-flex align-items-center justify-content-between pb-3 mb-4 border-bottom border-secondary border-opacity-25">
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="pulse-ring"></div>
-                                <span class="fw-bold fs-14 text-white">Monitor de Preservação Orion</span>
-                            </div>
-                            <span class="badge px-3 py-1-5 rounded-pill fs-12 fw-semibold" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
-                                Status: 100% Estável
-                            </span>
+                        <!-- Anel Orbital Externo 3 (Planeta Ciano/Azul) -->
+                        <div class="orbit-ring orbit-ring-3">
+                            <div class="orbit-planet planet-cyan" data-bs-toggle="tooltip" data-bs-placement="top" title="+ Discrição"></div>
                         </div>
 
-                        <!-- Anéis de Métricas em Grid -->
-                        <div class="row g-3 mb-4">
-                            <!-- Metric Card 1 -->
-                            <div class="col-6">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 text-white-50">Integridade dos Dados</span>
-                                        <i class="ri-shield-check-line fs-18 text-emerald-400" style="color: var(--orion-emerald);"></i>
-                                    </div>
-                                    <div class="fs-20 fw-bold text-white">100% <span class="fs-12 font-normal text-white-50">Preservado</span></div>
-                                    <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
-                                        <div class="progress-bar" style="width: 100%; background: var(--orion-emerald);"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Metric Card 2 -->
-                            <div class="col-6">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 text-white-50">Suporte a Parceiros</span>
-                                        <i class="ri-radio-button-line fs-18 text-cyan-400" style="color: var(--orion-cyan);"></i>
-                                    </div>
-                                    <div class="fs-20 fw-bold text-white">Ativo <span class="fs-12 font-normal text-white-50">Conectado</span></div>
-                                    <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
-                                        <div class="progress-bar" style="width: 100%; background: var(--orion-cyan);"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Anel Orbital Intermediário 2 (Planetas Ouro e Esmeralda) -->
+                        <div class="orbit-ring orbit-ring-2">
+                            <div class="orbit-planet planet-gold" data-bs-toggle="tooltip" data-bs-placement="top" title="+ Preservação"></div>
+                            <div class="orbit-planet planet-emerald" data-bs-toggle="tooltip" data-bs-placement="top" title="+ Agilidade"></div>
                         </div>
 
-                        <!-- Feed de Eventos Simulado em Tempo Real -->
-                        <div class="rounded-3 p-3 mb-3" style="background: #06090e; border: 1px solid rgba(255,255,255,0.06);">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <span class="fs-11 text-uppercase tracking-wider fw-bold text-white-50">Registros de Rotina</span>
-                                <span class="fs-11 text-white-50" id="liveClock">--:--:--</span>
-                            </div>
-
-                            <div class="d-flex flex-column gap-2 fs-12">
-                                <div class="d-flex align-items-center justify-content-between py-1 border-bottom border-secondary border-opacity-10">
-                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Check-in de Rotina Registrado</span>
-                                    <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Confirmado</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between py-1 border-bottom border-secondary border-opacity-10">
-                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Confirmação de Sinal de Apoio</span>
-                                    <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Ativo</span>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between py-1">
-                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Atualização de Protocolo</span>
-                                    <span class="badge bg-dark text-cyan-400 border border-secondary" style="color: var(--orion-cyan);">Sincronizado</span>
-                                </div>
-                            </div>
+                        <!-- Anel Orbital Interno 1 (Planeta Coral/Vermelho) -->
+                        <div class="orbit-ring orbit-ring-1">
+                            <div class="orbit-planet planet-coral" data-bs-toggle="tooltip" data-bs-placement="top" title="+ Proximidade"></div>
                         </div>
 
-                        <div class="text-center">
-                            <span class="fs-12 text-white-50"><i class="ri-lock-2-line me-1"></i> Conformidade com Protocolos CDC</span>
+                        <!-- Esfera Central 3D do Logo CDC -->
+                        <div class="orbit-core-3d">
+                            <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" alt="CDC Core Emblem">
                         </div>
+
                     </div>
                 </div>
 
@@ -337,15 +406,5 @@
             }, 350);
         }, 2500);
     })();
-
-    // Atualização do Relógio em Tempo Real
-    function updateClock() {
-        const now = new Date();
-        const timeString = now.toTimeString().split(' ')[0];
-        const clockEl = document.getElementById('liveClock');
-        if (clockEl) clockEl.innerText = timeString;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 </script>
 {% endblock %}
