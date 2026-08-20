@@ -25,8 +25,11 @@ services:
     restart: always
     ports:
       - "5051:5050"
+    volumes:
+      - .:/app:z
     environment:
-      FLASK_ENV: prod
+      PYTHONPATH: /app
+      FLASK_ENV: dev
       SECRET_KEY: ${SECRET_KEY:-dev-key-cdc-adm-change-in-production}
       DATABASE_URL: postgresql://${POSTGRES_USER:-cdc_user}:${POSTGRES_PASSWORD:-cdc_password}@db:5432/${POSTGRES_DB:-cdc_adm_db}
       SEED_USER_PASSWORD: ${SEED_USER_PASSWORD:-cdc@adm2026}
