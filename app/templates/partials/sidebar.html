@@ -124,7 +124,7 @@
     width: 280px !important;
 }
 
-/* Ocultar/Exibir Textos na Expansão */
+/* Ocultar/Exibir Textos e Subitens na Expansão */
 .sidebar-container .sidebar-text-content {
     opacity: 0;
     visibility: hidden;
@@ -136,6 +136,16 @@
 .sidebar-container.pinned .sidebar-text-content {
     opacity: 1;
     visibility: visible;
+}
+
+/* No modo colapsado (75px), ocultar sub-listas de accordion para manter apenas os ícones principais */
+.sidebar-container:not(:hover):not(.pinned) .collapse {
+    display: none !important;
+}
+
+.sidebar-container:hover .collapse.show,
+.sidebar-container.pinned .collapse.show {
+    display: block !important;
 }
 
 /* Ícones com tamanho ampliado 28px */
