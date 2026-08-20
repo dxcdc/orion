@@ -89,17 +89,17 @@
         </div>
     </div>
 
-    <!-- Usuário Ativo do Sistema -->
+    <!-- Botão de Encerramento de Sessão / Logout (Rodapé da Sidebar) -->
     <div class="pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex align-items-center gap-3 p-2 rounded-3" style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
-            <div class="d-flex align-items-center justify-content-center text-dark flex-shrink-0" style="width: 38px !important; height: 38px !important; min-width: 38px !important; min-height: 38px !important; flex-shrink: 0 !important; background-color: #10b981 !important; border-radius: 50% !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);" title="Perfil do Usuário">
-                <i class="ri-user-3-fill fs-20 text-dark"></i>
+        <a href="{{ url_for('auth.logout') }}" class="sidebar-logout-card d-flex align-items-center gap-3 p-2 rounded-3 text-decoration-none" title="Encerrar Sessão">
+            <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 38px !important; height: 38px !important; min-width: 38px !important; min-height: 38px !important; flex-shrink: 0 !important; background: rgba(239, 68, 68, 0.2) !important; border: 1px solid rgba(239, 68, 68, 0.4) !important; border-radius: 50% !important; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);">
+                <i class="ri-logout-box-r-line fs-19 text-danger" style="color: #f87171 !important;"></i>
             </div>
             <div class="overflow-hidden sidebar-text-content">
-                <span class="fs-13 fw-bold d-block text-truncate text-white">{{ session.get('user', 'admin') }}</span>
-                <span class="fs-10 text-white-50 text-truncate d-block">Sessão Encriptada</span>
+                <span class="fs-13 fw-bold d-block text-truncate text-white">Encerrar Sessão</span>
+                <span class="fs-10 text-truncate d-block" style="color: #fca5a5;">{{ session.get('user', 'admin') }} · Sair</span>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
