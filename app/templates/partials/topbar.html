@@ -72,6 +72,7 @@
 /* Estilos da Topbar Oficial CDC */
 .orion-topbar {
     z-index: 1040;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Botão Hamburger Circular (≡) */
@@ -147,6 +148,24 @@
 </style>
 
 <script>
+    function toggleSidebarPin() {
+        const sidebar = document.getElementById('orionSidebar');
+        const mainWrappers = document.querySelectorAll('.orion-main-content-wrapper');
+        const topbars = document.querySelectorAll('.orion-topbar');
+
+        if (sidebar) {
+            sidebar.classList.toggle('pinned');
+            const isPinned = sidebar.classList.contains('pinned');
+
+            mainWrappers.forEach(w => {
+                w.style.marginLeft = isPinned ? '280px' : '75px';
+            });
+            topbars.forEach(t => {
+                t.style.left = isPinned ? '280px' : '75px';
+            });
+        }
+    }
+
     function toggleFullScreen() {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
