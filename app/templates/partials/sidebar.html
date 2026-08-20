@@ -121,11 +121,15 @@
     visibility: visible;
 }
 
-/* Ícones com tamanho ampliado 22px idênticos ao layout da imagem */
-.sidebar-container .min-w-icon {
-    min-width: 28px;
-    text-align: center;
-    display: inline-block;
+/* Ícones com tamanho ampliado 28px idênticos ao layout da imagem */
+.sidebar-container i.min-w-icon {
+    font-size: 28px !important;
+    min-width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1 !important;
 }
 
 .icon-blue { color: #3b82f6 !important; }
@@ -134,11 +138,11 @@
 .icon-emerald { color: #10b981 !important; }
 .icon-yellow { color: #f59e0b !important; }
 
-/* Cards de Menu com Cantos Arredondados e Fundo Escuro */
 .sidebar-card-item {
-    background: rgba(30, 41, 59, 0.4);
-    border-radius: 0.75rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(30, 41, 59, 0.45);
+    border-radius: 0.85rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.6rem 0.75rem !important;
     transition: all 0.25s ease;
 }
 
