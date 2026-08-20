@@ -1,4 +1,4 @@
-<!-- Sidebar Orion Estilo CDC VPN (75px colapsado -> 280px no hover) -->
+<!-- Sidebar Orion Estilo CDC VPN (75px colapsado -> 280px no hover com retração automática) -->
 <div class="sidebar-container text-white p-3 d-flex flex-column justify-content-start gap-3 shadow-2xl" id="orionSidebar" style="background-color: #111827 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="d-flex flex-column flex-grow-1">
         
@@ -90,26 +90,24 @@
 </div>
 
 <style>
-/* Estilo do Menu Lateral Retrátil no Hover (75px -> 280px) idêntico à imagem CDC */
+/* Estilo do Menu Lateral Retrátil (75px colapsado -> 280px no hover/pinned) */
 .sidebar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 75px;
-    min-width: 75px;
-    z-index: 1050;
-    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-x: hidden;
-    white-space: nowrap;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 75px !important;
+    z-index: 1050 !important;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-x: hidden !important;
+    white-space: nowrap !important;
     background-color: #111827 !important;
 }
 
-/* Expansão Suave ao Aproximar o Mouse */
+/* Expansão no Hover (Recolhe sozinho ao sair o ponteiro do mouse) */
 .sidebar-container:hover,
 .sidebar-container.pinned {
-    width: 280px;
-    min-width: 280px;
+    width: 280px !important;
 }
 
 /* Ocultar/Exibir Textos na Expansão */
@@ -126,7 +124,7 @@
     visibility: visible;
 }
 
-/* Ícones com tamanho ampliado 28px idênticos ao layout da imagem */
+/* Ícones com tamanho ampliado 28px */
 .sidebar-container i.min-w-icon {
     font-size: 28px !important;
     min-width: 42px;
@@ -143,6 +141,7 @@
 .icon-emerald { color: #10b981 !important; }
 .icon-yellow { color: #f59e0b !important; }
 
+/* Cards de Menu */
 .sidebar-card-item {
     background: rgba(30, 41, 59, 0.45);
     border-radius: 0.85rem !important;
@@ -156,7 +155,7 @@
     transform: translateX(2px);
 }
 
-/* Card Ativo com Borda de Destaque Laranja/Esmeralda na Esquerda */
+/* Card Ativo com Borda Laranja na Esquerda */
 .sidebar-card-item.active-card {
     background: #1e293b !important;
     border-left: 4px solid #f97316 !important;
@@ -181,12 +180,3 @@
     transform: scale(1.08);
 }
 </style>
-
-<script>
-    function toggleSidebarPin() {
-        const sidebar = document.getElementById('orionSidebar');
-        if (sidebar) {
-            sidebar.classList.toggle('pinned');
-        }
-    }
-</script>
