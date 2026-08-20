@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -25,9 +25,6 @@
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url_for('static', filename='css/app.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url_for('static', filename='css/custom.min.css') }}" rel="stylesheet" type="text/css"/>
-
-    <!-- Layout Config script -->
-    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
 
     {% block extra_head %}{% endblock %}
 </head>

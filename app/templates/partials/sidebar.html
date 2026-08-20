@@ -1,11 +1,11 @@
 <!-- Sidebar Orion Estilo CDC VPN (75px colapsado -> 280px no hover) -->
-<div class="sidebar-container text-white p-3 d-flex flex-column justify-content-between shadow-2xl position-relative z-2" id="orionSidebar" style="background-color: #111827 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
-    <div>
+<div class="sidebar-container text-white p-3 d-flex flex-column justify-content-start gap-3 shadow-2xl" id="orionSidebar" style="background-color: #111827 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="d-flex flex-column flex-grow-1">
         
         <!-- Logotipo CDC Emblem Centralizado no Topo da Barra -->
-        <div class="text-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div class="text-center mb-3 pb-2 border-bottom border-secondary border-opacity-25" style="height: 46px; display: flex; align-items: center; justify-content: center;">
             <a href="{{ url_for('main.landing') }}" class="d-inline-flex align-items-center justify-content-center text-decoration-none">
-                <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="46" alt="CDC Emblem" class="sidebar-top-logo">
+                <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="40" alt="CDC Emblem" class="sidebar-top-logo">
             </a>
         </div>
 
