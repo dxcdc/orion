@@ -32,27 +32,32 @@ def create_app(config_name=None):
         # Garantir diretório instance para SQLite local
         os.makedirs(app.instance_path, exist_ok=True)
         db.create_all()
-        seed_fvier_user()
+        seed_initial_users()
 
     return app
 
-def seed_fvier_user():
-    """Gera o usuário fvier com senha segura no banco de dados se não existir."""
-    try:
-        user = User.query.filter((User.username == "fvier") | (User.email == "fvier@cdc.org.br")).first()
-        if not user:
-            default_password = os.getenv("SEED_USER_PASSWORD", "cdc@adm2026")
-            new_user = User(
-                username="fvier",
-                email="fvier@cdc.org.br",
-                role="Administrador"
-            )
-            new_user.set_password(default_password)
-            db.session.add(new_user)
-            db.session.commit()
-            print(f"[SEED] Usuário fvier criado com sucesso! (Senha: {default_password})")
-    except Exception as e:
-        db.session.rollback()
-        print(f"[SEED WARNING] Falha ao verificar/criar usuário fvier: {e}")
+def seed_initial_users():
+    """Gera os usuários iniciais (fvier, caco, victor) se não existirem."""
+    users_data = [
+        {"username": "fvier", "email": "fvier@cdc.org.br", "password": "cdc@adm2026", "role": "Administrador"},
+        {"username": "caco", "email": "caco@cdc.org.br", "password": "cdc@caco2026", "role": "Administrador"},
+        {"username": "victor", "email": "victor@cdc.org.br", "password": "cdc@victor2026", "role": "Administrador"},
+    ]
+    for u in users_data:
+        try:
+            user = User.query.filter((User.username == u["username"]) | (User.email == u["email"])).first()
+            if not user:
+                new_user = User(
+                    username=u["username"],
+                    email=u["email"],
+                    role=u["role"]
+                )
+                new_user.set_password(u["password"])
+                db.session.add(new_user)
+                db.session.commit()
+                print(f"[SEED] Usuário {u['username']} criado com sucesso!")
+        except Exception as e:
+            db.session.rollback()
+            print(f"[SEED WARNING] Falha ao criar {u['username']}: {e}")
 
 app = create_app()
