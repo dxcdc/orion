@@ -20,7 +20,7 @@
 
             <!-- Categoria 1: Gestão de Preservação -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white {% if active_page in ['checkins', 'perimetro', 'tutores', 'canais_apoio', 'registros'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="true">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['checkins', 'perimetro', 'tutores', 'canais_apoio', 'registros'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
                         <i class="ri-shield-user-line fs-22 icon-orange min-w-icon"></i>
                         <span class="sidebar-text-content fs-14 fw-bold text-white">Gestão de Preservação</span>
@@ -28,7 +28,7 @@
                     <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
                 </button>
                 
-                <div class="collapse show" id="menuPreservacao" data-bs-parent="#sidebarMenu">
+                <div class="collapse" id="menuPreservacao" data-bs-parent="#sidebarMenu">
                     <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
                         <a href="{{ url_for('main.checkins') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'checkins' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Check-ins de Rotina">
                             <i class="ri-user-follow-line fs-16 icon-cyan"></i>
@@ -56,7 +56,7 @@
 
             <!-- Categoria 2: Administração (Idêntica à imagem de referência) -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white {% if active_page in ['admin_guia', 'central_testes', 'apis', 'protocolos', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuAdministracao" aria-expanded="true">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['admin_guia', 'central_testes', 'apis', 'protocolos', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuAdministracao" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
                         <i class="ri-settings-3-line fs-22 icon-yellow min-w-icon"></i>
                         <span class="sidebar-text-content fs-14 fw-bold text-white">Administração</span>
@@ -64,7 +64,7 @@
                     <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
                 </button>
                 
-                <div class="collapse show" id="menuAdministracao" data-bs-parent="#sidebarMenu">
+                <div class="collapse" id="menuAdministracao" data-bs-parent="#sidebarMenu">
                     <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
                         <a href="{{ url_for('main.admin_guia') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'admin_guia' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Guia Admin & 2FA">
                             <i class="ri-settings-5-line fs-16 icon-yellow"></i>
