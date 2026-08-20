@@ -1,222 +1,163 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Administrativo{% endblock %}
+{% block title %}Orion — Dashboard de Preservação & Governança{% endblock %}
 
 {% block content %}
-<div class="d-flex min-vh-100 bg-light">
+<div class="d-flex flex-column min-vh-100" style="background-color: #090d16; color: #f3f4f6;">
+    
+    <!-- Topbar Fixo (SOS Ajuda, ≡ Hamburger, Controles e Perfil) -->
+    {% include 'partials/topbar.html' %}
 
-    <!-- Sidebar Padronizada & Retrátil -->
-    {% set active_page = 'dashboard' %}
-    {% include "partials/sidebar.html" %}
+    <div class="d-flex flex-grow-1 overflow-hidden" style="min-height: calc(100vh - 64px);">
+        
+        <!-- Menu Lateral Retrátil no Hover (70px -> 280px) -->
+        {% set active_page = 'dashboard' %}
+        {% include "partials/sidebar.html" %}
 
-    <!-- Conteúdo Principal -->
-    <div class="flex-grow-1 d-flex flex-column overflow-auto">
-        <!-- Topbar -->
-        <header class="bg-white border-bottom px-4 py-3 d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center gap-3">
-                <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" height="36" alt="CDC Logo">
-                <div class="border-start ps-3 border-2">
-                    <h4 class="fw-bold text-dark mb-0 fs-18">Painel do Setor Administrativo</h4>
-                </div>
-            </div>
-
-            <div class="d-flex align-items-center gap-3">
-                <a href="{{ url_for('main.landing') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
-                    <i class="ri-external-link-line me-1"></i> Ver Landing Page
-                </a>
-                <span class="fs-14 fw-semibold text-muted">Perfil: <strong class="text-dark">Administrador</strong></span>
-            </div>
-        </header>
-
-        <!-- Body do Dashboard -->
-        <main class="p-4 flex-grow-1">
-
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show mb-4" role="alert">
-                            <i class="ri-checkbox-circle-line me-1"></i> {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
-            <!-- Banner Explicativo da Seção -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-gradient text-dark position-relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-left: 4px solid #3b82f6 !important;">
-                <div class="d-flex align-items-start gap-3">
-                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
-                        <i class="ri-information-line fs-24"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold text-dark mb-1">Visão Geral & Controle Operacional CDC ADM</h5>
-                        <p class="text-secondary mb-0 fs-14 lh-base">
-                            Seja bem-vindo ao Painel de Controle Administrativo. Esta central reúne os indicadores em tempo real das requisições de suprimentos, classificação de fornecedores parceiros, mapas comparativos de cotações e status das integrações via APIs da instituição.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Atalhos Rápidos Operacionais -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="fw-bold text-dark mb-0"><i class="ri-flashlight-line text-warning me-1"></i> Ações Rápidas de Operação</h5>
-                    <span class="badge bg-light text-dark border fs-12">CDC ADM v1.0</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-md-3">
-                        <a href="{{ url_for('fornecedores.painel') }}" class="btn btn-outline-primary w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
-                            <i class="ri-user-add-line fs-24"></i>
-                            <div>
-                                <strong class="d-block text-dark">Cadastrar Fornecedor</strong>
-                                <small class="text-muted">Homologação de CNPJ</small>
+        <!-- Conteúdo Principal -->
+        <div class="flex-grow-1 d-flex flex-column overflow-auto">
+            
+            <!-- Banner Explicativo de Boas-Vindas -->
+            <main class="p-4 flex-grow-1">
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} bg-dark border-secondary text-white alert-dismissible fade show mb-4 fs-14" role="alert">
+                                <i class="ri-checkbox-circle-line text-emerald-400 me-2 fs-16" style="color: #10b981;"></i> {{ message }}
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
                             </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Banner Principal do Dashboard -->
+                <div class="p-4 p-lg-5 rounded-4 mb-4 position-relative overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(11, 16, 26, 0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-4">
+                        <div>
+                            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <i class="ri-shield-check-line fs-14 text-emerald-400" style="color: #10b981;"></i>
+                                <span class="fs-12 fw-semibold text-emerald-400" style="color: #10b981;">Plataforma de Preservação Orion Ativa</span>
+                            </div>
+                            <h2 class="display-6 fw-extrabold text-white mb-2">Painel de Acompanhamento & Rotina</h2>
+                            <p class="fs-15 text-white-50 mb-0 max-w-2xl lh-relaxed">
+                                Central integrada de supervisão contínua, monitoramento de perímetro, check-ins de rotina e sincronização silenciosa de dados com resposta imediata sob sigilo absoluto.
+                            </p>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="{{ url_for('main.checkins') }}" class="btn btn-emerald text-dark fw-bold rounded-pill px-4 py-2-5 fs-14 d-flex align-items-center gap-2 shadow-lg" style="background-color: #10b981; border: none;">
+                                <i class="ri-user-heart-line"></i> Realizar Check-in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métricas Operacionais do Dashboard -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="p-4 rounded-4" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="fs-13 text-white-50">Check-ins Registrados</span>
+                                <i class="ri-user-heart-line fs-20 text-emerald-400" style="color: #10b981;"></i>
+                            </div>
+                            <div class="fs-28 fw-bold text-white mb-1">100% Ok</div>
+                            <span class="fs-12 text-emerald-400" style="color: #10b981;"><i class="ri-arrow-up-line me-1"></i> Rotina Ativa Hoje</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-4 rounded-4" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="fs-13 text-white-50">Rede de Tutores</span>
+                                <i class="ri-team-line fs-20 text-cyan-400" style="color: #06b6d4;"></i>
+                            </div>
+                            <div class="fs-28 fw-bold text-white mb-1">3 Contatos</div>
+                            <span class="fs-12 text-white-50"><i class="ri-checkbox-circle-line me-1"></i> Prontidão 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-4 rounded-4" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="fs-13 text-white-50">Perímetro Livre</span>
+                                <i class="ri-compass-3-line fs-20 text-blue-400" style="color: #3b82f6;"></i>
+                            </div>
+                            <div class="fs-28 fw-bold text-white mb-1">Sem Alertas</div>
+                            <span class="fs-12 text-white-50"><i class="ri-shield-check-line me-1"></i> Zona Verificada</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-4 rounded-4" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="fs-13 text-white-50">Cofre de Provas</span>
+                                <i class="ri-shield-flash-line fs-20 text-purple-400" style="color: #c084fc;"></i>
+                            </div>
+                            <div class="fs-28 fw-bold text-white mb-1">Indexado</div>
+                            <span class="fs-12 text-white-50"><i class="ri-lock-2-line me-1"></i> Carimbo de Tempo Ativo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atalhos Rápidos Operacionais do Menu Lateral -->
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <a href="{{ url_for('main.checkins') }}" class="card border-0 rounded-4 p-4 text-decoration-none h-100 transition" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08) !important;">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="rounded-3 p-3 text-emerald-400" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                                    <i class="ri-user-heart-line fs-24"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fs-16 fw-bold text-white mb-0">Check-ins de Rotina</h3>
+                                    <span class="fs-12 text-white-50">Confirmação Periódica</span>
+                                </div>
+                            </div>
+                            <p class="fs-13 text-white-50 mb-0">Confirmações automáticas de bem-estar com atualização silenciosa para tutores.</p>
                         </a>
                     </div>
-                    <div class="col-md-3">
-                        <a href="{{ url_for('compras.requisicoes') }}" class="btn btn-outline-warning w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
-                            <i class="ri-add-circle-line fs-24"></i>
-                            <div>
-                                <strong class="d-block text-dark">Nova Requisição</strong>
-                                <small class="text-muted">Pedido de Suprimentos</small>
+
+                    <div class="col-md-4">
+                        <a href="{{ url_for('main.perimetro') }}" class="card border-0 rounded-4 p-4 text-decoration-none h-100 transition" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08) !important;">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="rounded-3 p-3 text-cyan-400" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4;">
+                                    <i class="ri-compass-3-line fs-24"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fs-16 fw-bold text-white mb-0">Perímetro de Conforto</h3>
+                                    <span class="fs-12 text-white-50">Zonas de Segurança</span>
+                                </div>
                             </div>
+                            <p class="fs-13 text-white-50 mb-0">Acompanhamento de rotas e verificação não-invasiva do perímetro residencial.</p>
                         </a>
                     </div>
-                    <div class="col-md-3">
-                        <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-outline-info w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
-                            <i class="ri-scales-3-line fs-24"></i>
-                            <div>
-                                <strong class="d-block text-dark">Mapa de Cotações</strong>
-                                <small class="text-muted">Análise de Propostas</small>
+
+                    <div class="col-md-4">
+                        <a href="{{ url_for('main.canais_apoio') }}" class="card border-0 rounded-4 p-4 text-decoration-none h-100 transition" style="background: rgba(17, 24, 39, 0.75); border: 1px solid rgba(255, 255, 255, 0.08) !important;">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="rounded-3 p-3 text-blue-400" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+                                    <i class="ri-chat-shield-line fs-24"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fs-16 fw-bold text-white mb-0">Canais Silenciosos</h3>
+                                    <span class="fs-12 text-white-50">Transmissão Camuflada</span>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{{ url_for('main.apis_painel') }}" class="btn btn-outline-success w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
-                            <i class="ri-refresh-line fs-24"></i>
-                            <div>
-                                <strong class="d-block text-dark">Status das APIs</strong>
-                                <small class="text-muted">Sincronização Ativa</small>
-                            </div>
+                            <p class="fs-13 text-white-50 mb-0">Acionamento emergencial não-verbal e envio de sinal de suporte com sigilo total.</p>
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Cards de Métricas Larkon -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fs-13 text-muted fw-semibold uppercase">Fornecedores Cadastrados</span>
-                            <div class="bg-primary bg-opacity-10 text-primary p-2 rounded-3">
-                                <i class="ri-user-star-line fs-20"></i>
-                            </div>
-                        </div>
-                        <h2 class="fw-extrabold text-dark mb-1">142</h2>
-                        <span class="fs-12 text-success fw-semibold"><i class="ri-arrow-up-line"></i> 98% Qualificação A/B</span>
-                    </div>
-                </div>
+            </main>
 
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fs-13 text-muted fw-semibold uppercase">Pedidos de Compras</span>
-                            <div class="bg-warning bg-opacity-10 text-warning p-2 rounded-3">
-                                <i class="ri-shopping-cart-line fs-20"></i>
-                            </div>
-                        </div>
-                        <h2 class="fw-extrabold text-dark mb-1">28</h2>
-                        <span class="fs-12 text-muted fw-semibold">12 aguardando cotação</span>
-                    </div>
-                </div>
+            <!-- Rodapé Interno -->
+            <footer class="py-3 px-4 border-top border-secondary border-opacity-25 text-center text-white-50 fs-12" style="background: rgba(9, 13, 22, 0.9);">
+                CDC Relógio © 2026 Todos os direitos reservados · Centro de Desenvolvimento e Cidadania - CDC · Orion Dashboard
+            </footer>
 
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fs-13 text-muted fw-semibold uppercase">Cotações Automatizadas</span>
-                            <div class="bg-info bg-opacity-10 text-info p-2 rounded-3">
-                                <i class="ri-settings-4-line fs-20"></i>
-                            </div>
-                        </div>
-                        <h2 class="fw-extrabold text-dark mb-1">89</h2>
-                        <span class="fs-12 text-info fw-semibold">Supervisão ativa</span>
-                    </div>
-                </div>
+        </div>
 
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fs-13 text-muted fw-semibold uppercase">Integração de APIs</span>
-                            <div class="bg-success bg-opacity-10 text-success p-2 rounded-3">
-                                <i class="ri-links-line fs-20"></i>
-                            </div>
-                        </div>
-                        <h2 class="fw-extrabold text-dark mb-1">100%</h2>
-                        <span class="fs-12 text-success fw-semibold"><i class="ri-check-line"></i> Conexão OK</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tabela Demonstrativa com Estilo Larkon -->
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
-                <div class="card-header bg-white p-4 d-flex align-items-center justify-content-between border-bottom">
-                    <div>
-                        <h5 class="fw-bold text-dark mb-0">Últimas Cotações & Supervisão Automatizada</h5>
-                        <small class="text-muted">Processos operacionais em andamento</small>
-                    </div>
-                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-primary rounded-pill px-3">
-                        <i class="ri-eye-line me-1"></i> Ver Mapa de Cotações
-                    </a>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-light text-muted fs-12 uppercase">
-                            <tr>
-                                <th class="ps-4">ID Cotação</th>
-                                <th>Item / Requisição</th>
-                                <th>Melhor Proposta</th>
-                                <th>Supervisão de Processos</th>
-                                <th>Status API</th>
-                                <th class="pe-4 text-end">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fs-14">
-                            <tr>
-                                <td class="ps-4 fw-bold text-dark">COT-2026-089</td>
-                                <td>Kit de Monitores LED 27" & Periféricos TI</td>
-                                <td><span class="fw-semibold text-dark">Global IT Brasil</span> (R$ 4.350,00)</td>
-                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Verificado (Score A)</span></td>
-                                <td><span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3">Sincronizado</span></td>
-                                <td class="pe-4 text-end">
-                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ps-4 fw-bold text-dark">COT-2026-090</td>
-                                <td>Material de Escritório CDC</td>
-                                <td><span class="fw-semibold text-dark">Papelaria & Suprimentos CDC</span> (R$ 1.820,00)</td>
-                                <td><span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3">Em Análise (Score B)</span></td>
-                                <td><span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-3">Pendente</span></td>
-                                <td class="pe-4 text-end">
-                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ps-4 fw-bold text-dark">COT-2026-091</td>
-                                <td>Nobreaks 1200VA & Filtros de Linha</td>
-                                <td><span class="fw-semibold text-dark">Eletrônica Recife Ltda</span> (R$ 2.450,00)</td>
-                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Verificado (Score A)</span></td>
-                                <td><span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3">Sincronizado</span></td>
-                                <td class="pe-4 text-end">
-                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
     </div>
+
 </div>
 {% endblock %}

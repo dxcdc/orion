@@ -1,12 +1,12 @@
-<!-- Sidebar Orion Preservação & Governança -->
-<div class="sidebar-container text-white p-3 d-flex flex-column justify-content-between shadow-lg" style="width: 280px; min-width: 280px; background-color: #090d16 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
+<!-- Sidebar Retrátil no Hover Orion (70px colapsado -> 280px expandido no hover) -->
+<div class="sidebar-container text-white p-3 d-flex flex-column justify-content-between shadow-2xl position-relative z-2" id="orionSidebar" style="background-color: #090d16 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
     <div>
         <!-- Logotipo CDC Orion Limpo sem quadrado -->
-        <a href="{{ url_for('main.landing') }}" class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 text-decoration-none">
-            <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="36" alt="CDC Logo" class="d-inline-block">
-            <div class="overflow-hidden">
-                <span class="fs-16 fw-bold text-white d-block lh-1 text-truncate">CDC <span style="color: #10b981;">ORION</span></span>
-                <span class="fs-11 text-white-50 text-truncate d-block fw-semibold tracking-wider text-uppercase">Preservação & Governança</span>
+        <a href="{{ url_for('main.landing') }}" class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 text-decoration-none px-1">
+            <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo" class="sidebar-logo-img">
+            <div class="overflow-hidden sidebar-text-content">
+                <span class="fs-15 fw-bold text-white d-block lh-1 text-truncate">CDC <span style="color: #10b981;">ORION</span></span>
+                <span class="fs-10 text-white-50 text-truncate d-block fw-semibold tracking-wider text-uppercase">Preservação & Governança</span>
             </div>
         </a>
 
@@ -15,88 +15,116 @@
             
             <!-- Grupo 1: Preservação & Rotina -->
             <div class="mb-3">
-                <button class="btn w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="true">
-                    <span><i class="ri-shield-user-line me-1" style="color: #10b981;"></i> Preservação & Rotina</span>
-                    <i class="ri-arrow-down-s-line fs-14 transition-transform"></i>
-                </button>
-                <div class="collapse show" id="menuPreservacao" data-bs-parent="#sidebarMenu">
-                    <div class="nav nav-pills flex-column gap-1 ps-1">
-                        <a href="{{ url_for('main.dashboard') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'dashboard' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-dashboard-3-line fs-17"></i> Dashboard Geral
-                        </a>
-                        <a href="{{ url_for('main.checkins') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'checkins' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-user-heart-line fs-17"></i> Check-ins de Rotina
-                        </a>
-                        <a href="{{ url_for('main.perimetro') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'perimetro' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-compass-3-line fs-17"></i> Perímetro de Conforto
-                        </a>
-                    </div>
+                <div class="w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider px-1">
+                    <span class="d-flex align-items-center"><i class="ri-shield-user-line me-2 fs-16" style="color: #10b981;"></i> <span class="sidebar-text-content">Preservação & Rotina</span></span>
+                </div>
+                <div class="nav nav-pills flex-column gap-1">
+                    <a href="{{ url_for('main.dashboard') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'dashboard' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Dashboard Geral">
+                        <i class="ri-dashboard-3-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Dashboard Geral</span>
+                    </a>
+                    <a href="{{ url_for('main.checkins') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'checkins' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Check-ins de Rotina">
+                        <i class="ri-user-heart-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Check-ins de Rotina</span>
+                    </a>
+                    <a href="{{ url_for('main.perimetro') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'perimetro' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Perímetro de Conforto">
+                        <i class="ri-compass-3-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Perímetro de Conforto</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Grupo 2: Rede de Suporte & Acompanhamento -->
             <div class="mb-3">
-                <button class="btn w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider" type="button" data-bs-toggle="collapse" data-bs-target="#menuSuporte" aria-expanded="true">
-                    <span><i class="ri-team-line me-1" style="color: #06b6d4;"></i> Rede & Acompanhamento</span>
-                    <i class="ri-arrow-down-s-line fs-14 transition-transform"></i>
-                </button>
-                <div class="collapse show" id="menuSuporte" data-bs-parent="#sidebarMenu">
-                    <div class="nav nav-pills flex-column gap-1 ps-1">
-                        <a href="{{ url_for('main.tutores') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'tutores' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-contacts-book-2-line fs-17"></i> Rede de Tutores
-                        </a>
-                        <a href="{{ url_for('main.canais_apoio') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'canais_apoio' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-chat-shield-line fs-17"></i> Canais Silenciosos
-                        </a>
-                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-shield-flash-line fs-17"></i> Cofre de Registros
-                        </a>
-                    </div>
+                <div class="w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider px-1">
+                    <span class="d-flex align-items-center"><i class="ri-team-line me-2 fs-16" style="color: #06b6d4;"></i> <span class="sidebar-text-content">Rede & Acompanhamento</span></span>
+                </div>
+                <div class="nav nav-pills flex-column gap-1">
+                    <a href="{{ url_for('main.tutores') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'tutores' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Rede de Tutores">
+                        <i class="ri-contacts-book-2-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Rede de Tutores</span>
+                    </a>
+                    <a href="{{ url_for('main.canais_apoio') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'canais_apoio' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Canais Silenciosos">
+                        <i class="ri-chat-shield-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Canais Silenciosos</span>
+                    </a>
+                    <a href="{{ url_for('main.registros') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'registros' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Cofre de Registros">
+                        <i class="ri-shield-flash-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Cofre de Registros</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Grupo 3: Governança & Integração -->
+            <!-- Grupo 3: Governança & TI -->
             <div class="mb-3">
-                <button class="btn w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider" type="button" data-bs-toggle="collapse" data-bs-target="#menuGovernanca" aria-expanded="true">
-                    <span><i class="ri-lock-password-line me-1" style="color: #3b82f6;"></i> Governança & TI</span>
-                    <i class="ri-arrow-down-s-line fs-14 transition-transform"></i>
-                </button>
-                <div class="collapse show" id="menuGovernanca" data-bs-parent="#sidebarMenu">
-                    <div class="nav nav-pills flex-column gap-1 ps-1">
-                        <a href="{{ url_for('main.documentos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'documentos' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-folder-shield-2-line fs-17"></i> Documentação Protegida
-                        </a>
-                        <a href="{{ url_for('main.protocolos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'protocolos' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-file-list-3-line fs-17"></i> Protocolos & Diretrizes
-                        </a>
-                        <a href="{{ url_for('main.apis_painel') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'apis' %}active-orion{% else %}text-white-50 hover-orion{% endif %}">
-                            <i class="ri-links-line fs-17"></i> Ecossistema de APIs
-                        </a>
-                    </div>
+                <div class="w-100 text-start p-0 mb-2 d-flex align-items-center justify-content-between text-uppercase fs-11 fw-bold text-white-50 border-0 bg-transparent tracking-wider px-1">
+                    <span class="d-flex align-items-center"><i class="ri-lock-password-line me-2 fs-16" style="color: #3b82f6;"></i> <span class="sidebar-text-content">Governança & TI</span></span>
+                </div>
+                <div class="nav nav-pills flex-column gap-1">
+                    <a href="{{ url_for('main.documentos') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'documentos' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Documentação Protegida">
+                        <i class="ri-folder-shield-2-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Documentação Protegida</span>
+                    </a>
+                    <a href="{{ url_for('main.protocolos') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'protocolos' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Protocolos & Diretrizes">
+                        <i class="ri-file-list-3-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Protocolos & Diretrizes</span>
+                    </a>
+                    <a href="{{ url_for('main.apis_painel') }}" class="nav-link px-2 py-2 rounded-3 d-flex align-items-center gap-3 border-0 {% if active_page == 'apis' %}active-orion{% else %}text-white-50 hover-orion{% endif %}" title="Ecossistema de APIs">
+                        <i class="ri-links-line fs-19 min-w-icon"></i> <span class="sidebar-text-content fs-13">Ecossistema de APIs</span>
+                    </a>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Usuário Ativo do Sistema e Logout -->
+    <!-- Usuário Ativo e Botão de Logout -->
     <div class="pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex align-items-center gap-2 mb-3 p-2 rounded-3" style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
-            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold fs-13 shadow-sm text-dark" style="width: 36px; height: 36px; background-color: #10b981;">
+        <div class="d-flex align-items-center gap-3 mb-3 p-2 rounded-3" style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold fs-13 shadow-sm text-dark min-w-icon" style="width: 34px; height: 34px; background-color: #10b981;">
                 {{ session.get('user', 'U')[0]|upper }}
             </div>
-            <div class="overflow-hidden">
+            <div class="overflow-hidden sidebar-text-content">
                 <span class="fs-13 fw-bold d-block text-truncate text-white">{{ session.get('user', 'Usuário CDC') }}</span>
-                <span class="fs-11 text-white-50 text-truncate d-block">Sessão Criptografada</span>
+                <span class="fs-10 text-white-50 text-truncate d-block">Sessão Encriptada</span>
             </div>
         </div>
-        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm w-100 rounded-pill border-opacity-50 fs-12">
-            <i class="ri-logout-box-r-line me-1"></i> Encerrar Sessão
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm w-100 rounded-pill border-opacity-50 fs-12 d-flex align-items-center justify-content-center gap-2" title="Encerrar Sessão">
+            <i class="ri-logout-box-r-line fs-16 min-w-icon"></i> <span class="sidebar-text-content">Encerrar Sessão</span>
         </a>
     </div>
 </div>
 
 <style>
+/* CSS do Menu Lateral Retrátil no Hover (70px -> 280px) */
+.sidebar-container {
+    width: 70px;
+    min-width: 70px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+/* Quando passa o mouse por cima OU quando está fixado (.pinned) */
+.sidebar-container:hover,
+.sidebar-container.pinned {
+    width: 280px;
+    min-width: 280px;
+}
+
+/* Esconder conteúdo textual por padrão quando colapsado */
+.sidebar-container .sidebar-text-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    white-space: nowrap;
+}
+
+/* Mostrar texto suavemente na expansão */
+.sidebar-container:hover .sidebar-text-content,
+.sidebar-container.pinned .sidebar-text-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ícone centralizado e fixo */
+.sidebar-container .min-w-icon {
+    min-width: 24px;
+    text-align: center;
+}
+
 .sidebar-container .active-orion {
     background: rgba(16, 185, 129, 0.18) !important;
     color: #10b981 !important;
@@ -111,7 +139,17 @@
 }
 
 .sidebar-container .hover-orion:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
     color: #ffffff !important;
 }
 </style>
+
+<script>
+    // Função para alternar o estado fixado do menu lateral ao clicar no botão hamburger da topbar
+    function toggleSidebarPin() {
+        const sidebar = document.getElementById('orionSidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('pinned');
+        }
+    }
+</script>

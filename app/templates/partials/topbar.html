@@ -1,0 +1,145 @@
+<!-- Topbar Fixo Orion (Estilo Oficial CDC) -->
+<header class="orion-topbar sticky-top py-2 px-4 d-flex align-items-center justify-content-between z-3" style="background: rgba(9, 13, 22, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); height: 64px;">
+    
+    <!-- Lado Esquerdo: Botão Hamburger (≡) e Título Oficial do Sistema -->
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-icon-round text-white border-0 p-2 d-flex align-items-center justify-content-center" id="toggleSidebarPinBtn" onclick="toggleSidebarPin()" title="Expandir/Fixar Menu Lateral">
+            <i class="ri-menu-line fs-20"></i>
+        </button>
+
+        <a href="{{ url_for('main.dashboard') }}" class="text-decoration-none d-flex align-items-center gap-2">
+            <span class="fs-15 fw-bold text-white tracking-wide text-uppercase" style="letter-spacing: 0.04em;">
+                SISTEMA DE PRESERVAÇÃO & GOVERNANÇA DO CDC
+            </span>
+        </a>
+    </div>
+
+    <!-- Lado Direito: Botão SOS Ajuda, Ícones de Ação e Perfil do Usuário -->
+    <div class="d-flex align-items-center gap-3">
+        
+        <!-- Botão Pill SOS Ajuda / Sinal de Suporte Discreto -->
+        <a href="{{ url_for('main.canais_apoio') }}" class="btn btn-sos-pill text-white fw-bold px-3 py-1-5 fs-13 d-flex align-items-center gap-2 shadow-sm">
+            <i class="ri-error-warning-fill fs-16"></i>
+            <span>SOS AJUDA</span>
+        </a>
+
+        <!-- Controles com Ícones (Tema, Fullscreen, Configurações, Início) -->
+        <div class="d-flex align-items-center gap-2 text-white-50 ms-2">
+            <button class="btn btn-icon-sm text-white-50 hover-text-white border-0" title="Alternar Modo Escuro/Claro" onclick="toggleThemeMode()">
+                <i class="ri-moon-line fs-18"></i>
+            </button>
+
+            <button class="btn btn-icon-sm text-white-50 hover-text-white border-0" title="Paleta de Temas">
+                <i class="ri-palette-line fs-18"></i>
+            </button>
+
+            <button class="btn btn-icon-sm text-white-50 hover-text-white border-0" title="Tela Cheia" onclick="toggleFullScreen()">
+                <i class="ri-fullscreen-line fs-18"></i>
+            </button>
+
+            <button class="btn btn-icon-sm text-white-50 hover-text-white border-0" title="Configurações do Sistema">
+                <i class="ri-settings-4-line fs-18"></i>
+            </button>
+
+            <a href="{{ url_for('main.landing') }}" class="btn btn-icon-sm text-white-50 hover-text-white border-0 text-decoration-none" title="Voltar à Início">
+                <i class="ri-home-4-line fs-18"></i>
+            </a>
+        </div>
+
+        <!-- Perfil do Usuário (CDC admin •) -->
+        <div class="dropdown border-start border-secondary border-opacity-25 ps-3 ms-1">
+            <button class="btn p-0 border-0 text-white d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                <div class="user-avatar-circle bg-dark text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-12 border border-secondary" style="width: 34px; height: 34px; background: #0f172a !important;">
+                    CDC
+                </div>
+                <div class="text-start d-none d-sm-block">
+                    <span class="fs-13 fw-bold text-white d-block lh-1">{{ session.get('user', 'admin') }}</span>
+                </div>
+                <span class="status-dot-emerald ms-1"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary text-white shadow-xl">
+                <li><a class="dropdown-menu-item text-white-50 hover-text-white px-3 py-2 fs-13 d-flex align-items-center gap-2 text-decoration-none" href="{{ url_for('main.dashboard') }}"><i class="ri-user-settings-line"></i> Perfil</a></li>
+                <li><a class="dropdown-menu-item text-white-50 hover-text-white px-3 py-2 fs-13 d-flex align-items-center gap-2 text-decoration-none" href="{{ url_for('main.protocolos') }}"><i class="ri-shield-keyhole-line"></i> Diretrizes de Sigilo</a></li>
+                <li><hr class="dropdown-divider border-secondary opacity-25"></li>
+                <li><a class="dropdown-menu-item text-danger px-3 py-2 fs-13 d-flex align-items-center gap-2 text-decoration-none" href="{{ url_for('auth.logout') }}"><i class="ri-logout-box-r-line"></i> Sair do Sistema</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</header>
+
+<style>
+/* Estilos Específicos do Topbar Fixo */
+.orion-topbar {
+    z-index: 1040;
+}
+
+.btn-icon-round {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    transition: all 0.2s ease;
+}
+
+.btn-icon-round:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-sos-pill {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-radius: 50rem;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn-sos-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+.btn-icon-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-icon-sm:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.status-dot-emerald {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #10b981;
+}
+</style>
+
+<script>
+    // Alternar modo de tela cheia
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+
+    // Toggle de Tema (Modo Escuro / Claro)
+    function toggleThemeMode() {
+        document.body.classList.toggle('light-mode-active');
+    }
+</script>
