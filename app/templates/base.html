@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}CDC ADM{% endblock %} | Gestão Administrativa & Suprimentos</title>
+    <meta name="description" content="CDC ADM - Sistema Especializado do Setor Administrativo (Fornecedores, Compras, Cotações, APIs)"/>
+    <meta name="author" content="fvier"/>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Steex Icons CSS (Remixicon, Boxicons, Material Design Icons, Phosphor Icons) -->
+    <link href="{{ url_for('static', filename='css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <!-- Steex Theme Bootstrap & App CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='css/app.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='css/custom.min.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- Layout Config script -->
+    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}bg-light{% endblock %}">
+
+    {% block content %}{% endblock %}
+
+    <!-- Steex Vendor & App JS -->
+    <script src="{{ url_for('static', filename='libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block title %}Portal de Gestão Administrativa{% endblock %}
+
+{% block content %}
+<div class="bg-white min-vh-100 d-flex flex-column font-sans">
+
+    <!-- Header / Navbar Limpa Empresarial -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
+        <div class="container px-4">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="{{ url_for('main.landing') }}">
+                <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" alt="CDC Logo" height="42">
+                <div class="border-start ps-3 border-2 border-secondary opacity-50">
+                    <span class="fs-16 fw-bold text-dark d-block lh-1">ADM</span>
+                    <span class="fs-11 text-muted fw-medium tracking-wider">Gestão Empresarial</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4 fw-medium fs-15 text-secondary">
+                    <li class="nav-item"><a class="nav-link text-dark" href="#modulos">Módulos</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#supervisao">Supervisão Automatizada</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#apis">Integração via APIs</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    {% if session.get('user') %}
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary rounded-3 px-4 fw-bold fs-14 shadow-sm">
+                            <i class="ri-dashboard-3-line me-1"></i> Acessar Painel
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-dark rounded-3 px-4 fw-medium fs-14">
+                            Entrar no Sistema
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Empresarial Limpa -->
+    <section class="py-5 bg-light border-bottom">
+        <div class="container py-lg-5 px-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white border rounded-pill text-dark fs-13 fw-medium mb-3 shadow-sm">
+                        <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="18" alt="CDC Icon">
+                        <span>Plataforma Oficial do Centro de Desenvolvimento e Cidadania</span>
+                    </div>
+                    
+                    <h1 class="display-5 fw-bold text-dark mb-3 lh-sm">
+                        Sistema de Gestão Administrativa, Compras & Cotações
+                    </h1>
+                    
+                    <p class="fs-18 text-secondary mb-4 lh-base font-normal max-w-xl">
+                        Solução corporativa centralizada para controle de fornecedores, requisições de compras, mapas comparativos de cotações com supervisão de processos automatizada e integração flexível via APIs.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        {% if session.get('user') %}
+                            <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg rounded-3 px-4 fw-semibold fs-16 shadow-sm">
+                                Abrir Painel Administrativo <i class="ri-arrow-right-line ms-1"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg rounded-3 px-4 fw-semibold fs-16 shadow-sm">
+                                Entrar no Sistema <i class="ri-arrow-right-line ms-1"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="card border shadow-sm rounded-4 overflow-hidden bg-white">
+                        <div class="card-header bg-white border-bottom p-3 px-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="fw-bold fs-14 text-dark"><i class="ri-shield-check-line text-success me-1"></i> Status dos Serviços</span>
+                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1 fs-12">Operacional</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-column gap-3">
+                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="ri-user-star-line fs-22 text-primary"></i>
+                                        <div>
+                                            <span class="fw-bold fs-14 text-dark d-block">Gestão de Fornecedores</span>
+                                            <span class="fs-12 text-muted">Homologação e Rating</span>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
+                                </div>
+
+                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="ri-shopping-cart-line fs-22 text-warning"></i>
+                                        <div>
+                                            <span class="fw-bold fs-14 text-dark d-block">Requisições de Compras</span>
+                                            <span class="fs-12 text-muted">Aprovações e controle</span>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
+                                </div>
+
+                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="ri-scales-3-line fs-22 text-info"></i>
+                                        <div>
+                                            <span class="fw-bold fs-14 text-dark d-block">Mapas de Cotações</span>
+                                            <span class="fs-12 text-muted">Supervisão Automatizada</span>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
+                                </div>
+
+                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="ri-links-line fs-22 text-success"></i>
+                                        <div>
+                                            <span class="fw-bold fs-14 text-dark d-block">Integração via APIs</span>
+                                            <span class="fs-12 text-muted">Ecossistema de APIs</span>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-white text-dark border fs-12">Conectado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos Limpos Empresariais -->
+    <section id="modulos" class="py-5 bg-white">
+        <div class="container py-lg-4 px-4">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <h2 class="fw-bold text-dark fs-32">Módulos Administrativos Integrados</h2>
+                <p class="text-secondary fs-16">Arquitetura modular projetada para máxima eficiência operacional e transparência em suprimentos.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
+                        <div class="bg-light text-primary rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="ri-user-star-line fs-24"></i>
+                        </div>
+                        <h4 class="fw-bold fs-18 text-dark mb-2">Fornecedores</h4>
+                        <p class="text-secondary fs-14 mb-0">Cadastro unificado, verificação de certidões e qualificação contínua (Vendor Rating).</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
+                        <div class="bg-light text-warning rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="ri-shopping-bag-3-line fs-24"></i>
+                        </div>
+                        <h4 class="fw-bold fs-18 text-dark mb-2">Compras</h4>
+                        <p class="text-secondary fs-14 mb-0">Padronização de pedidos de materiais e serviços com fluxo de alçadas de decisão.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
+                        <div class="bg-light text-info rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="ri-file-search-line fs-24"></i>
+                        </div>
+                        <h4 class="fw-bold fs-18 text-dark mb-2">Supervisão de Cotações</h4>
+                        <p class="text-secondary fs-14 mb-0">Análise comparativa automatizada de propostas comerciais com regras de validação.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
+                        <div class="bg-light text-success rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="ri-links-line fs-24"></i>
+                        </div>
+                        <h4 class="fw-bold fs-18 text-dark mb-2">APIs de Integração</h4>
+                        <p class="text-secondary fs-14 mb-0">Conexão flexível via APIs REST para exportação de dados homologados e sincronização.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé Oficial idêntico à imagem enviada -->
+    <footer class="mt-auto bg-black text-white py-4 border-top border-dark" style="background-color: #0c0c0c !important;">
+        <div class="container px-4">
+            <!-- Linha Superior: Logo, Descrição, Contatos e Redes Sociais -->
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo" class="d-inline-block">
+                    <span class="fs-14 text-white opacity-90 fw-normal">A plataforma completa de Gestão Administrativa para equipes do CDC.</span>
+                    
+                    <div class="d-flex align-items-center gap-4 ms-md-3">
+                        <a href="tel:8132246963" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-phone-fill text-success fs-18"></i>
+                            <span class="fw-medium">(81) 3224-6963</span>
+                        </a>
+                        <a href="mailto:adm@cdc.org.br" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-mail-fill text-success fs-18"></i>
+                            <span class="fw-medium">adm@cdc.org.br</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ícones de Redes Sociais -->
+                <div class="d-flex align-items-center gap-2">
+                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
+                        <i class="ri-linkedin-fill fs-18"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
+                        <i class="ri-instagram-line fs-18"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Linha Divisória sutil -->
+            <hr class="border-secondary opacity-25 my-3">
+
+            <!-- Linha Inferior de Copyright e CNPJ -->
+            <div class="text-center text-muted fs-13 py-1 opacity-75">
+                · CDC ADM © 2026 Todos os direitos reservados · &nbsp;&nbsp;· Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29 ·
+            </div>
+        </div>
+    </footer>
+
+</div>
+{% endblock %}

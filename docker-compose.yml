@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: cdc_adm_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cdc_adm_db}
+      POSTGRES_USER: ${POSTGRES_USER:-cdc_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cdc_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cdc_user} -d ${POSTGRES_DB:-cdc_adm_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: cdc_adm_web
+    restart: always
+    ports:
+      - "5050:5050"
+    environment:
+      FLASK_ENV: prod
+      SECRET_KEY: ${SECRET_KEY:-dev-key-cdc-adm-change-in-production}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-cdc_user}:${POSTGRES_PASSWORD:-cdc_password}@db:5432/${POSTGRES_DB:-cdc_adm_db}
+      SEED_USER_PASSWORD: ${SEED_USER_PASSWORD:-cdc@adm2026}
+      PORT: 5050
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

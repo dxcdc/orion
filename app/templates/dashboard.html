@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Administrativo{% endblock %}
+
+{% block content %}
+<div class="d-flex min-vh-100 bg-light">
+
+    <!-- Sidebar Padronizada & Retrátil -->
+    {% set active_page = 'dashboard' %}
+    {% include "partials/sidebar.html" %}
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- Topbar -->
+        <header class="bg-white border-bottom px-4 py-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-3">
+                <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" height="36" alt="CDC Logo">
+                <div class="border-start ps-3 border-2">
+                    <h4 class="fw-bold text-dark mb-0 fs-18">Painel do Setor Administrativo</h4>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ url_for('main.landing') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                    <i class="ri-external-link-line me-1"></i> Ver Landing Page
+                </a>
+                <span class="fs-14 fw-semibold text-muted">Perfil: <strong class="text-dark">Administrador</strong></span>
+            </div>
+        </header>
+
+        <!-- Body do Dashboard -->
+        <main class="p-4 flex-grow-1">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show mb-4" role="alert">
+                            <i class="ri-checkbox-circle-line me-1"></i> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Banner Explicativo da Seção -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-gradient text-dark position-relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-left: 4px solid #3b82f6 !important;">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
+                        <i class="ri-information-line fs-24"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold text-dark mb-1">Visão Geral & Controle Operacional CDC ADM</h5>
+                        <p class="text-secondary mb-0 fs-14 lh-base">
+                            Seja bem-vindo ao Painel de Controle Administrativo. Esta central reúne os indicadores em tempo real das requisições de suprimentos, classificação de fornecedores parceiros, mapas comparativos de cotações e status das integrações via APIs da instituição.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atalhos Rápidos Operacionais -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="fw-bold text-dark mb-0"><i class="ri-flashlight-line text-warning me-1"></i> Ações Rápidas de Operação</h5>
+                    <span class="badge bg-light text-dark border fs-12">CDC ADM v1.0</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="{{ url_for('fornecedores.painel') }}" class="btn btn-outline-primary w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
+                            <i class="ri-user-add-line fs-24"></i>
+                            <div>
+                                <strong class="d-block text-dark">Cadastrar Fornecedor</strong>
+                                <small class="text-muted">Homologação de CNPJ</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('compras.requisicoes') }}" class="btn btn-outline-warning w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
+                            <i class="ri-add-circle-line fs-24"></i>
+                            <div>
+                                <strong class="d-block text-dark">Nova Requisição</strong>
+                                <small class="text-muted">Pedido de Suprimentos</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-outline-info w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
+                            <i class="ri-scales-3-line fs-24"></i>
+                            <div>
+                                <strong class="d-block text-dark">Mapa de Cotações</strong>
+                                <small class="text-muted">Análise de Propostas</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('main.apis_painel') }}" class="btn btn-outline-success w-100 p-3 rounded-3 text-start d-flex align-items-center gap-3 hover-shadow">
+                            <i class="ri-refresh-line fs-24"></i>
+                            <div>
+                                <strong class="d-block text-dark">Status das APIs</strong>
+                                <small class="text-muted">Sincronização Ativa</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards de Métricas Larkon -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold uppercase">Fornecedores Cadastrados</span>
+                            <div class="bg-primary bg-opacity-10 text-primary p-2 rounded-3">
+                                <i class="ri-user-star-line fs-20"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-extrabold text-dark mb-1">142</h2>
+                        <span class="fs-12 text-success fw-semibold"><i class="ri-arrow-up-line"></i> 98% Qualificação A/B</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold uppercase">Pedidos de Compras</span>
+                            <div class="bg-warning bg-opacity-10 text-warning p-2 rounded-3">
+                                <i class="ri-shopping-cart-line fs-20"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-extrabold text-dark mb-1">28</h2>
+                        <span class="fs-12 text-muted fw-semibold">12 aguardando cotação</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold uppercase">Cotações Automatizadas</span>
+                            <div class="bg-info bg-opacity-10 text-info p-2 rounded-3">
+                                <i class="ri-settings-4-line fs-20"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-extrabold text-dark mb-1">89</h2>
+                        <span class="fs-12 text-info fw-semibold">Supervisão ativa</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold uppercase">Integração de APIs</span>
+                            <div class="bg-success bg-opacity-10 text-success p-2 rounded-3">
+                                <i class="ri-links-line fs-20"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-extrabold text-dark mb-1">100%</h2>
+                        <span class="fs-12 text-success fw-semibold"><i class="ri-check-line"></i> Conexão OK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela Demonstrativa com Estilo Larkon -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+                <div class="card-header bg-white p-4 d-flex align-items-center justify-content-between border-bottom">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-0">Últimas Cotações & Supervisão Automatizada</h5>
+                        <small class="text-muted">Processos operacionais em andamento</small>
+                    </div>
+                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-primary rounded-pill px-3">
+                        <i class="ri-eye-line me-1"></i> Ver Mapa de Cotações
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light text-muted fs-12 uppercase">
+                            <tr>
+                                <th class="ps-4">ID Cotação</th>
+                                <th>Item / Requisição</th>
+                                <th>Melhor Proposta</th>
+                                <th>Supervisão de Processos</th>
+                                <th>Status API</th>
+                                <th class="pe-4 text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fs-14">
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">COT-2026-089</td>
+                                <td>Kit de Monitores LED 27" & Periféricos TI</td>
+                                <td><span class="fw-semibold text-dark">Global IT Brasil</span> (R$ 4.350,00)</td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Verificado (Score A)</span></td>
+                                <td><span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3">Sincronizado</span></td>
+                                <td class="pe-4 text-end">
+                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">COT-2026-090</td>
+                                <td>Material de Escritório CDC</td>
+                                <td><span class="fw-semibold text-dark">Papelaria & Suprimentos CDC</span> (R$ 1.820,00)</td>
+                                <td><span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3">Em Análise (Score B)</span></td>
+                                <td><span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-3">Pendente</span></td>
+                                <td class="pe-4 text-end">
+                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">COT-2026-091</td>
+                                <td>Nobreaks 1200VA & Filtros de Linha</td>
+                                <td><span class="fw-semibold text-dark">Eletrônica Recife Ltda</span> (R$ 2.450,00)</td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Verificado (Score A)</span></td>
+                                <td><span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3">Sincronizado</span></td>
+                                <td class="pe-4 text-end">
+                                    <a href="{{ url_for('cotacoes.mapa') }}" class="btn btn-sm btn-light border">Ver Mapa</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

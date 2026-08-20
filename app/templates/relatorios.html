@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Relatórios & Indicadores Administrativos{% endblock %}
+
+{% block content %}
+<div class="d-flex min-vh-100 bg-light">
+
+    <!-- Sidebar Padronizada & Retrátil -->
+    {% set active_page = 'relatorios' %}
+    {% include "partials/sidebar.html" %}
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- Topbar -->
+        <header class="bg-white border-bottom px-4 py-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-3">
+                <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" height="36" alt="CDC Logo">
+                <div class="border-start ps-3 border-2">
+                    <h4 class="fw-bold text-dark mb-0 fs-18">Relatórios & Indicadores Administrativos</h4>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ url_for('main.landing') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                    <i class="ri-external-link-line me-1"></i> Ver Landing Page
+                </a>
+                <button class="btn btn-primary btn-sm rounded-pill px-3">
+                    <i class="ri-download-2-line me-1"></i> Exportar Relatório (PDF)
+                </button>
+            </div>
+        </header>
+
+        <!-- Body -->
+        <main class="p-4 flex-grow-1">
+
+            <!-- Banner Explicativo da Seção -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-gradient text-dark position-relative overflow-hidden" style="background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-left: 4px solid #6366f1 !important;">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
+                        <i class="ri-bar-chart-box-line fs-24"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold text-dark mb-1">Painel Executivo de Relatórios e Desempenho Orçamentário</h5>
+                        <p class="text-secondary mb-0 fs-14 lh-base">
+                            Acompanhe os indicadores consolidados de economia gerada (Saving %), prazos médios de aquisição e a distribuição orçamentária por departamento. Este painel fornece dados para apoiar a tomada de decisões estratégicas do setor administrativo do CDC.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold">ECONOMIA GERADA (SAVING %)</span>
+                            <i class="ri-percent-line fs-24 text-success"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1">11.4%</h2>
+                        <span class="fs-12 text-success"><i class="ri-arrow-up-line"></i> R$ 52.450 economizados</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold">PRAZO MÉDIO DE AQUISIÇÃO</span>
+                            <i class="ri-calendar-event-line fs-24 text-primary"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1">4.2 dias</h2>
+                        <span class="fs-12 text-primary">Da solicitação à entrega</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold">VOLUME TOTAL EXECUTADO</span>
+                            <i class="ri-pie-chart-line fs-24 text-info"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1">R$ 542.800</h2>
+                        <span class="fs-12 text-info">Execução orçamentária do ano</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fs-13 text-muted fw-semibold">ÍNDICE DE ADIMPLÊNCIA</span>
+                            <i class="ri-checkbox-circle-fill fs-24 text-success"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1">98.6%</h2>
+                        <span class="fs-12 text-success">Conformidade nas entregas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráficos Visuais e Medidores de Saving -->
+            <div class="row g-4 mb-4">
+                <!-- Barras de Progresso por Departamento -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                        <h5 class="fw-bold text-dark mb-3">Distribuição de Gastos por Departamento</h5>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between fs-14 mb-1">
+                                <span class="fw-semibold text-dark">TI, Infraestrutura & Sistemas</span>
+                                <span class="fw-bold text-primary">R$ 215.400 (40%)</span>
+                            </div>
+                            <div class="progress rounded-pill" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between fs-14 mb-1">
+                                <span class="fw-semibold text-dark">Serviços Gerais & Operacional</span>
+                                <span class="fw-bold text-warning">R$ 143.200 (26%)</span>
+                            </div>
+                            <div class="progress rounded-pill" style="height: 10px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 26%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between fs-14 mb-1">
+                                <span class="fw-semibold text-dark">Material de Escritório & Secretaria</span>
+                                <span class="fw-bold text-info">R$ 100.000 (19%)</span>
+                            </div>
+                            <div class="progress rounded-pill" style="height: 10px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 19%;"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="d-flex justify-content-between fs-14 mb-1">
+                                <span class="fw-semibold text-dark">Eventos, Capacitação & Treinamentos</span>
+                                <span class="fw-bold text-success">R$ 84.200 (15%)</span>
+                            </div>
+                            <div class="progress rounded-pill" style="height: 10px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Qualificação dos Fornecedores -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                        <h5 class="fw-bold text-dark mb-3">Qualificação de Fornecedores (Vendor Rating)</h5>
+                        
+                        <div class="p-3 bg-light rounded-3 mb-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge bg-success fs-16 px-3 py-2">Score A</span>
+                                <div>
+                                    <strong class="d-block text-dark">Excelente Desempenho (90 - 100 pts)</strong>
+                                    <small class="text-muted">98 fornecedores homologados</small>
+                                </div>
+                            </div>
+                            <span class="fs-18 fw-bold text-success">69%</span>
+                        </div>
+
+                        <div class="p-3 bg-light rounded-3 mb-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge bg-warning text-dark fs-16 px-3 py-2">Score B</span>
+                                <div>
+                                    <strong class="d-block text-dark">Regular / Atende aos Requisitos (75 - 89 pts)</strong>
+                                    <small class="text-muted">30 fornecedores em monitoramento</small>
+                                </div>
+                            </div>
+                            <span class="fs-18 fw-bold text-warning">21%</span>
+                        </div>
+
+                        <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge bg-danger fs-16 px-3 py-2">Score C/D</span>
+                                <div>
+                                    <strong class="d-block text-dark">Requer Atenção ou Suspenso (< 75 pts)</strong>
+                                    <small class="text-muted">14 fornecedores sob auditoria</small>
+                                </div>
+                            </div>
+                            <span class="fs-18 fw-bold text-danger">10%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela Demonstrativa de Gastos por Categoria -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="card-header bg-white p-4 d-flex align-items-center justify-content-between border-bottom">
+                    <h5 class="fw-bold text-dark mb-0">Consolidado Anual de Economia em Cotações</h5>
+                    <span class="badge bg-light text-dark border">Consolidado 2026</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light text-muted fs-12 uppercase">
+                            <tr>
+                                <th class="ps-4">Categoria</th>
+                                <th>Total de Cotações</th>
+                                <th>Valor Total Executado</th>
+                                <th>Economia Gerada (Saving)</th>
+                                <th>Status de Eficiência</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fs-14">
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">TI, Informática & Licenças</td>
+                                <td>42 cotações</td>
+                                <td>R$ 215.400,00</td>
+                                <td><span class="text-success fw-bold">R$ 24.500,00 (10,2%)</span></td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Alta Eficiência</span></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">Material de Escritório & Papelaria</td>
+                                <td>28 cotações</td>
+                                <td>R$ 84.200,00</td>
+                                <td><span class="text-success fw-bold">R$ 9.800,00 (10,4%)</span></td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Alta Eficiência</span></td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4 fw-bold text-dark">Serviços Gerais & Manutenção</td>
+                                <td>19 cotações</td>
+                                <td>R$ 143.200,00</td>
+                                <td><span class="text-success fw-bold">R$ 18.200,00 (11,3%)</span></td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Alta Eficiência</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

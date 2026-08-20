@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- Title Meta -->
+     <meta charset="utf-8" />
+     <title>Getting Started | Lahomes - Responsive Admin Dashboard Template</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+     <meta content="Techzaa" name="author" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+     <!-- App favicon -->
+     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+     <!-- Vendor css (Require in all Page) -->
+     <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- App css (Require in all Page) -->
+     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Theme Config js (Require in all Page) -->
+     <script src="assets/js/config.js"></script>
+</head>
+
+<body>
+
+     <!-- START Wrapper -->
+     <div class="wrapper">
+
+          <!-- ========== App Menu Start ========== -->
+          <div class="main-nav">
+               <!-- Sidebar Logo -->
+               <div class="logo-box">
+                    <a href="./index.html" class="logo-dark">
+                         <img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark">
+                    </a>
+
+                    <a href="./index.html" class="logo-light">
+                         <img src="assets/images/logo-light.png" class="logo-lg" alt="logo light">
+                    </a>
+               </div>
+
+
+               <div class="scrollbar">
+
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="nav-item">
+                              <a class="nav-link menu-link" href="./index.html">
+                                   <span class="nav-icon"><i class="bx bx-file"></i></span>
+                                   <span class="nav-text"> Getting Started </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-link" href="./introduction.html">
+                                   <span class="nav-icon"><i class="bx bx-book-open"></i></span>
+                                   <span class="nav-text"> Introduction </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-link" href="./customization.html">
+                                   <span class="nav-icon"><i class="bx bx-cog"></i></span>
+                                   <span class="nav-text"> Customization </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-link" href="./change-log.html">
+                                   <span class="nav-icon"><i class="bx bx-history"></i></span>
+                                   <span class="nav-text"> Change Log </span>
+                              </a>
+                         </li>
+                    </ul>
+               </div>
+
+               <div class="swipe-open"></div>
+          </div>
+          <!-- ========== App Menu End ========== -->
+
+          <!-- ==================================================== -->
+          <!-- Start right Content here -->
+          <!-- ==================================================== -->
+
+          <div class="page-content">
+
+               <!-- Start Container -->
+               <div class="container">
+
+                    <!-- ========== Page Title Start ========== -->
+                    <div class="row">
+                         <div class="col-12">
+                              <div class="page-title-box">
+                                   <h4 class="mb-0">Getting Started</h4>
+                                   <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Documentation</a>
+                                        </li>
+                                        <li class="breadcrumb-item active">Getting Started</li>
+                                   </ol>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- ========== Page Title End ========== -->
+
+                    <div class="row">
+                         <div class="col-xl-12">
+                              <div class="card">
+                                   <div class="card-body">
+                                        <h5 class="card-title mb-3"></h5>
+                                        <h5 class="card-title anchor" id="prerequisites">
+                                             Prerequisites <a class="anchor-link" href="#prerequisites">#</a>
+                                        </h5>
+
+                                        <p>
+                                             To get started with Lahomes, please follow the steps below
+                                             to install and set up all the necessary prerequisites:
+                                        </p>
+                                        <ul>
+                                             <li>
+                                                  <h5>Python</h5>
+
+                                                  <p class="mb-2">Make sure to have the <a class="text-danger"
+                                                            href="https://www.python.org/downloads/"
+                                                            target="_blank">Python</a>
+                                                       installed &amp; running in your computer. If you already have
+                                                       installed
+                                                       Python
+                                                       on your computer, you can skip this step.</p>
+                                                  <p>
+                                                  </p>
+                                                  <p class="mb-0">For windows</p>
+                                                  <ul>
+                                                       <li>Download python from windows store</li>
+                                                       <li>Select the Python's version to download</li>
+                                                       <li>Click on the install</li>
+                                                  </ul>
+                                                  <p class="mt-2 mb-0">For Linux</p>
+                                                  <ul>
+                                                       <li>sudo apt update</li>
+                                                       <li>sudo apt install python3</li>
+                                                  </ul>
+                                                  <p></p>
+                                             </li>
+                                             <li>
+                                                  <h5>Virtualenv</h5>
+
+                                                  <p>Make sure to have the <code>virtualenv</code> installed globally
+                                                       &amp;
+                                                       running on your computer. If you already have installed on your
+                                                       computer,
+                                                       you can skip this step.</p>
+                                                  <p>
+                                                       Virtualenv installation command for linux &amp; mac os
+                                                       <br>
+                                                       <code>python3 -m pip install --user virtualenv</code><br>
+                                                       Virtualenv installation command for Windows<br>
+                                                       <code>py -m pip install --user virtualenv</code>
+                                                       <br>
+                                                  </p>
+                                             </li>
+
+                                        </ul>
+
+                                        <h4 class="mt-4">Installation</h4>
+
+                                        <p class="mt-1">
+                                             You can run the following commands to run projects
+                                             locally or build for production use:
+                                        </p>
+                                        <table class="table table-bordered m-0">
+                                             <thead>
+                                                  <tr>
+                                                       <th style="width:25%">Command</th>
+                                                       <th>Description</th>
+                                                  </tr>
+                                             </thead>
+                                             <tbody>
+                                                  <tr>
+                                                       <td>
+                                                            <code>python3 -m venv environment_name</code>
+                                                       </td>
+                                                       <td>
+                                                            Create Virtual Environment on linux &amp; mac OS
+                                                       </td>
+                                                  </tr>
+
+                                                  <tr>
+                                                       <td>
+                                                            <code>python -m venv environment_name</code>
+                                                       </td>
+                                                       <td>
+                                                            Create Virtual Environment on Windows OS
+                                                       </td>
+                                                  </tr>
+
+                                                  <tr>
+                                                       <td>
+                                                            <code>source environment_name/bin/activate</code>
+                                                       </td>
+                                                       <td>
+                                                            Activate Environment on Linux &amp; mac OS
+                                                       </td>
+                                                  </tr>
+
+                                                  <tr>
+                                                       <td>
+                                                            <code>environment_name/Scripts/activate</code>
+                                                       </td>
+                                                       <td>
+                                                            Activate Environment on Windows OS
+                                                       </td>
+                                                  </tr>
+
+                                                  <tr>
+                                                       <td>
+                                                            <code>pip install -r requirements.txt</code>
+                                                       </td>
+                                                       <td>
+                                                            This will install all the required dependencies.
+                                                       </td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td>
+                                                            <code>cp env.sample .env</code>
+                                                       </td>
+                                                       <td>
+                                                            Create .env from env.sample file.
+                                                       </td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td>(Linux/Mac): <code>export FLASK_APP=run.py</code> <br>
+                                                            (Windows): <code>set FLASK_APP=run.py</code> <br>
+                                                            (Powershell): <code>$env:FLASK_APP = ".\run.py"</code>
+                                                       </td>
+                                                       <td>Set the FLASK_APP environment variable
+                                                       </td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td>(Linux/Mac): <code>export FLASK_ENV=development</code> <br>
+                                                            (Windows): <code>set FLASK_ENV=development</code> <br>
+                                                            (Powershell): <code>$env:FLASK_ENV = "development"</code>
+                                                       </td>
+                                                       <td>Set up the DEBUG environment
+                                                       </td>
+                                                  </tr>
+                                                  <tr>
+                                                       <td>
+                                                            <code>flask run</code>
+                                                       </td>
+                                                       <td>
+                                                            Runs the project locally, starting the
+                                                            development server on
+                                                            <a href="http://127.0.0.1:5000" class="text-blue-600"
+                                                                 target="_blank">http://127.0.0.1:5000</a>.
+                                                       </td>
+                                                  </tr>
+
+                                             </tbody>
+                                        </table>
+                                   </div> <!-- end card body -->
+                              </div> <!-- end card -->
+
+                              <div class="card">
+                                   <div class="card-body">
+                                        <div class="p-lg-3">
+                                             <p class="mt-2">
+                                                  We utilize
+                                                  <a href="https://gulpjs.com/" target="_blank">Gulp</a> to
+                                                  automate our build flow, allowing for complete automation
+                                                  of our development workflows. Gulp is a powerful toolkit
+                                                  designed to help developers eliminate time-consuming
+                                                  tasks, allowing them to focus on what really matters:
+                                                  building great products. If you're not familiar with Gulp,
+                                                  you can learn more about it
+                                                  <a href="https://gulpjs.com/" target="_blank">here</a>.
+                                             </p>
+                                             <h4 class="mt-4">Prerequisites</h4>
+                                             <p>
+                                                  To get started with Lahomes, please follow the steps below
+                                                  to install and set up all the necessary prerequisites:
+                                             </p>
+                                             <ul>
+                                                  <li>
+                                                       <h5>Node.js</h5>
+                                                       <p class="mb-2">
+                                                            To use our build tools and take full advantage of
+                                                            Lahomes's customization options, you will need to
+                                                            download and install <a href="https://nodejs.org/"
+                                                                 target="_blank">Node.js</a>. If you do not have
+                                                            Node.js installed already, you can
+                                                            download the package installer from the official
+                                                            website. We recommend that you download the stable
+                                                            version of Node.js (LTS) to ensure the best possible
+                                                            experience.
+                                                       </p>
+                                                  </li>
+                                                  <li>
+                                                       <h5>Gulp</h5>
+                                                       <p>
+                                                            Ensure that you have
+                                                            <a href="https://gulpjs.com/" target="_blank">Gulp</a>
+                                                            installed and running on your computer. If you already
+                                                            have Gulp installed, you can skip this step. If not,
+                                                            you can install it by running the following command
+                                                            from your terminal:
+                                                            <code>npm install -g gulp</code>.
+                                                       </p>
+                                                  </li>
+                                             </ul>
+                                             <h4 class="mt-4">Installation</h4>
+
+                                             <p class="mb-1">Run following commands in separate terminal.</p>
+                                             <p class="mb-1">You can run this app using any following package manager:
+                                                  <strong>Bun</strong>,
+                                                  <strong>Yarn</strong> or <strong>NPM</strong>
+                                             </p>
+
+                                             <div class="mt-3">
+                                                  <h5 class="text-danger">1. Bun</h5>
+                                                  <p class="mb-2">If you don't have <strong>bun</strong> installed on
+                                                       your PC, use the
+                                                       <code>npm i
+                                            -g bun</code> or <code>sudo npm i -g
+                                            bun </code> to install
+                                                  </p>
+                                                  <div class="table-responsive">
+                                                       <table class="table table-bordered">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Command</th>
+                                                                      <th>Description</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>bun i</code><br>
+                                                                      </td>
+                                                                      <td>
+                                                                           This would install all required dependencies
+                                                                           in <code>node_modules</code> folder.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>bun dev</code>
+                                                                      </td>
+                                                                      <td>
+                                                                           Builds and minifies styles and scripts,
+                                                                           initiates a
+                                                                           watch process to detect files changes.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>bun run build</code>
+                                                                      </td>
+                                                                      <td>Builds the styles and scripts for production.
+                                                                           Your
+                                                                           app is now ready to be deployed.
+                                                                      </td>
+                                                                 </tr>
+                                                            </tbody>
+                                                       </table>
+                                                  </div>
+                                             </div>
+
+                                             <div>
+                                                  <h5 class="text-danger">2. Yarn</h5>
+                                                  <p class="mb-2">If you don't have <strong>yarn</strong> installed on
+                                                       your PC, use
+                                                       the next
+                                                       command <code>npm i -g yarn</code> or
+                                                       <code>sudo npm i -g yarn </code>
+                                                  </p>
+                                                  <div class="table-responsive">
+                                                       <table class="table table-bordered">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Command</th>
+                                                                      <th>Description</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>yarn</code><br>
+                                                                      </td>
+                                                                      <td>
+                                                                           This would install all required dependencies
+                                                                           in <code>node_modules</code> folder.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>yarn dev</code>
+                                                                      </td>
+                                                                      <td>
+                                                                           Builds and minifies styles and scripts,
+                                                                           initiates a
+                                                                           watch process to detect files changes.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>yarn build</code>
+                                                                      </td>
+                                                                      <td>Builds the styles and scripts for production.
+                                                                           Your
+                                                                           app is now ready to be deployed.
+                                                                      </td>
+                                                                 </tr>
+                                                            </tbody>
+                                                       </table>
+                                                  </div>
+                                             </div>
+
+                                             <div>
+                                                  <h5 class="text-danger">3. NPM</h5>
+                                                  <p class="mb-2"><strong>npm</strong> comes preinstalled when you
+                                                       install Nodejs </p>
+                                                  <div class="table-responsive">
+                                                       <table class="table table-bordered mb-0">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th>Command</th>
+                                                                      <th>Description</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>npm i</code> or
+                                                                           <code>npm i --force</code><br>
+                                                                      </td>
+                                                                      <td>This would install all required dependencies
+                                                                           in
+                                                                           <code>node_modules</code>
+                                                                           folder.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>npm run dev</code>
+                                                                      </td>
+                                                                      <td>Builds and minifies styles and scripts,
+                                                                           initiates a
+                                                                           watch process to detect files changes.
+                                                                      </td>
+                                                                 </tr>
+                                                                 <tr>
+                                                                      <td>
+                                                                           <code>npm run build</code>
+                                                                      </td>
+                                                                      <td>Builds the styles and scripts for production.
+                                                                           Your
+                                                                           app is now ready to be deployed.
+                                                                      </td>
+                                                                 </tr>
+                                                            </tbody>
+                                                       </table>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+
+                         </div> <!-- end col -->
+
+                    </div> <!-- end row -->
+
+
+               </div>
+               <!-- End Container Fluid -->
+
+               <!-- ========== Footer Start ========== -->
+               <footer class="footer">
+                    <div class="container-fluid">
+                         <div class="row">
+                              <div class="col-md-12 footer-links text-center">
+                                   <script>document.write(new Date().getFullYear())</script> &copy; Lahomes. Crafted by
+                                   <a href="" class="fw-semibold" target="_blank">Techzaa</a>
+                              </div>
+
+                         </div>
+                    </div>
+               </footer>
+               <!-- ========== Footer End ========== -->
+
+          </div>
+          <!-- ==================================================== -->
+          <!-- End Page Content -->
+          <!-- ==================================================== -->
+
+     </div>
+     <!-- END Wrapper -->
+
+     <!-- Vendor Javascript (Require in all Page) -->
+     <script src="assets/js/vendor.js"></script>
+
+     <!-- App Javascript (Require in all Page) -->
+     <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>

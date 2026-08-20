@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Login Administrativo{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column h-100 bg-white">
+    <div class="d-flex flex-column flex-grow-1">
+        <div class="row h-100 justify-content-center align-items-center g-0">
+            <div class="col-xxl-8 col-lg-10 p-3 p-md-5">
+                <div class="card shadow-lg border rounded-4 overflow-hidden">
+                    <div class="row g-0">
+                        <!-- Lado Esquerdo: Formulário de Autenticação Limpo -->
+                        <div class="col-lg-6 p-4 p-md-5 bg-white d-flex flex-column justify-content-center">
+                            <div class="auth-logo mb-4 text-start">
+                                <a href="{{ url_for('main.landing') }}" class="logo-dark text-decoration-none d-flex align-items-center gap-3">
+                                    <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" alt="Centro de Desenvolvimento e Cidadania" height="48">
+                                    <div class="border-start ps-3 border-2">
+                                        <span class="fs-18 fw-bold text-dark d-block lh-1">ADM</span>
+                                        <span class="fs-11 text-muted fw-medium tracking-wider">Gestão Empresarial</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <h3 class="fw-bold fs-24 text-dark mb-1">Acesso ao Sistema</h3>
+                            <p class="text-secondary mb-4 fs-14">Informe suas credenciais administrativas para acessar o painel corporativo do CDC ADM.</p>
+
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show mb-3 fs-14" role="alert">
+                                            <i class="ri-error-warning-line me-1"></i> {{ message }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+
+                            <form action="{{ url_for('auth.login') }}" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label fw-medium fs-14" for="username">Usuário</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0"><i class="ri-user-3-line text-muted"></i></span>
+                                        <input type="text" id="username" name="username" class="form-control border-start-0 ps-0 fs-14" placeholder="Digite seu usuário" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label class="form-label fw-medium fs-14 mb-0" for="password">Senha de Acesso</label>
+                                        <a href="javascript:void(0);" class="fs-12 text-primary text-decoration-none">Esqueceu a senha?</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0"><i class="ri-lock-2-line text-muted"></i></span>
+                                        <input type="password" id="password" name="password" class="form-control border-start-0 ps-0 fs-14" placeholder="••••••••" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="remember" name="remember" checked>
+                                        <label class="form-check-label fs-14 text-secondary" for="remember">Lembrar minha sessão neste dispositivo</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid mb-3">
+                                    <button class="btn btn-primary btn-lg rounded-3 fw-bold py-2 fs-15 shadow-sm" type="submit">
+                                        Entrar no Sistema <i class="ri-arrow-right-line ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Lado Direito: Banner Corporativo -->
+                        <div class="col-lg-6 d-none d-lg-block bg-dark p-5 text-white position-relative" style="background-color: #0f172a !important;">
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="36" alt="CDC Icon" class="bg-white p-1 rounded-2">
+                                    <span class="badge bg-white bg-opacity-10 text-white border border-white border-opacity-10 px-3 py-2 rounded-pill fs-12 fw-medium">
+                                        <i class="ri-shield-check-line me-1 text-success"></i> Ambiente Seguro
+                                    </span>
+                                </div>
+
+                                <div class="my-auto text-start py-4">
+                                    <h2 class="display-6 fw-bold text-white mb-3">Gestão Empresarial & Suprimentos</h2>
+                                    <p class="fs-15 text-white-50 mb-4 lh-base">
+                                        Plataforma integrada com supervisão de cotações automatizada e conexão contínua via APIs de sistemas externos.
+                                    </p>
+                                    
+                                    <div class="border-top border-white border-opacity-10 pt-4 mt-4">
+                                        <div class="row g-3 fs-13 text-white-50">
+                                            <div class="col-6 d-flex align-items-center gap-2">
+                                                <i class="ri-checkbox-circle-fill text-success fs-16"></i> Fornecedores & Rating
+                                            </div>
+                                            <div class="col-6 d-flex align-items-center gap-2">
+                                                <i class="ri-checkbox-circle-fill text-success fs-16"></i> Requisições de Compras
+                                            </div>
+                                            <div class="col-6 d-flex align-items-center gap-2">
+                                                <i class="ri-checkbox-circle-fill text-success fs-16"></i> Supervisão Automatizada
+                                            </div>
+                                            <div class="col-6 d-flex align-items-center gap-2">
+                                                <i class="ri-checkbox-circle-fill text-success fs-16"></i> Conexão via APIs
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 border-top border-white border-opacity-10 fs-12 text-white-50">
+                                    <span>Centro de Desenvolvimento e Cidadania</span>
+                                    <span>v1.0.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé Oficial idêntico à imagem enviada -->
+    <footer class="mt-auto bg-black text-white py-4 border-top border-dark" style="background-color: #0c0c0c !important;">
+        <div class="container px-4">
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo">
+                    <span class="fs-14 text-white opacity-90 fw-normal">A plataforma completa de Gestão Administrativa para equipes do CDC.</span>
+                    
+                    <div class="d-flex align-items-center gap-4 ms-md-3">
+                        <a href="tel:8132246963" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-phone-fill text-success fs-18"></i>
+                            <span class="fw-medium">(81) 3224-6963</span>
+                        </a>
+                        <a href="mailto:adm@cdc.org.br" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-mail-fill text-success fs-18"></i>
+                            <span class="fw-medium">adm@cdc.org.br</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
+                        <i class="ri-linkedin-fill fs-18"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
+                        <i class="ri-instagram-line fs-18"></i>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25 my-3">
+
+            <div class="text-center text-muted fs-13 py-1 opacity-75">
+                · CDC ADM © 2026 Todos os direitos reservados · &nbsp;&nbsp;· Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29 ·
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
