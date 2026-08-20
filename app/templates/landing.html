@@ -1,39 +1,162 @@
 {% extends "base.html" %}
 
-{% block title %}Portal de Gestão Administrativa{% endblock %}
+{% block title %}Orion — Gestão Administrativa, Suprimentos & Governança{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Orion Creative Theme Variables */
+    :root {
+        --orion-bg: #090d16;
+        --orion-surface: #111827;
+        --orion-glass: rgba(17, 24, 39, 0.7);
+        --orion-border: rgba(255, 255, 255, 0.08);
+        --orion-border-glow: rgba(16, 185, 129, 0.25);
+        --orion-emerald: #10b981;
+        --orion-emerald-glow: rgba(16, 185, 129, 0.4);
+        --orion-cyan: #06b6d4;
+        --orion-blue: #3b82f6;
+    }
+
+    body {
+        font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        background-color: var(--orion-bg);
+        color: #f3f4f6;
+        overflow-x: hidden;
+    }
+
+    /* Ambient Background Mesh Gradient */
+    .mesh-gradient-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        background: 
+            radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Glassmorphism Navbar */
+    .glass-nav {
+        background: rgba(9, 13, 22, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--orion-border);
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+        background: var(--orion-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--orion-border);
+        border-radius: 1.25rem;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover {
+        border-color: rgba(16, 185, 129, 0.35);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.15);
+    }
+
+    /* Text Gradient */
+    .text-gradient {
+        background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 50%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Pulse Indicator */
+    .pulse-ring {
+        position: relative;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: var(--orion-emerald);
+        border-radius: 50%;
+    }
+    .pulse-ring::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: var(--orion-emerald);
+        border-radius: 50%;
+        animation: pulse-animation 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-animation {
+        0% { transform: scale(1); opacity: 0.8; }
+        100% { transform: scale(3.2); opacity: 0; }
+    }
+
+    /* Code Playground */
+    .code-block {
+        background: #06090e;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 0.85rem;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 0.875rem;
+    }
+
+    /* Custom Switch Toggle */
+    .stealth-switch .form-check-input {
+        width: 3rem;
+        height: 1.6rem;
+        cursor: pointer;
+        background-color: #1f2937;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .stealth-switch .form-check-input:checked {
+        background-color: var(--orion-emerald);
+        border-color: var(--orion-emerald);
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="bg-white min-vh-100 d-flex flex-column font-sans">
+<div class="position-relative min-vh-100 d-flex flex-column" style="background-color: var(--orion-bg);">
+    
+    <!-- Ambient Background -->
+    <div class="mesh-gradient-bg"></div>
 
-    <!-- Header / Navbar Limpa Empresarial -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
+    <!-- Header / Navbar Glassmorphism -->
+    <nav class="navbar navbar-expand-lg glass-nav sticky-top py-3 z-3">
         <div class="container px-4">
             <a class="navbar-brand d-flex align-items-center gap-3" href="{{ url_for('main.landing') }}">
-                <img src="{{ url_for('static', filename='images/logo-cdc.png') }}" alt="CDC Logo" height="42">
-                <div class="border-start ps-3 border-2 border-secondary opacity-50">
-                    <span class="fs-16 fw-bold text-dark d-block lh-1">ADM</span>
-                    <span class="fs-11 text-muted fw-medium tracking-wider">Gestão Empresarial</span>
+                <div class="d-flex align-items-center justify-content-center rounded-3 p-2" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
+                    <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" alt="CDC Logo" height="30">
+                </div>
+                <div>
+                    <span class="fs-18 fw-bold text-white d-block lh-1 tracking-wide">ORION</span>
+                    <span class="fs-11 text-emerald-400 fw-semibold tracking-wider text-uppercase" style="color: var(--orion-emerald);">Plataforma CDC ADM</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <i class="ri-menu-3-line fs-24"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarMain">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4 fw-medium fs-15 text-secondary">
-                    <li class="nav-item"><a class="nav-link text-dark" href="#modulos">Módulos</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#supervisao">Supervisão Automatizada</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#apis">Integração via APIs</a></li>
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4 fw-medium fs-14 text-white-50">
+                    <li class="nav-item"><a class="nav-link text-white-50 hover-text-white" href="#modulos">Módulos</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50 hover-text-white" href="#preservacao">Proteção & Governança</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50 hover-text-white" href="#apis">APIs & Integrações</a></li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-3">
                     {% if session.get('user') %}
-                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary rounded-3 px-4 fw-bold fs-14 shadow-sm">
-                            <i class="ri-dashboard-3-line me-1"></i> Acessar Painel
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-emerald text-dark fw-bold rounded-3 px-4 py-2 fs-14 d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--orion-emerald);">
+                            <i class="ri-dashboard-3-line"></i> Acessar Painel
                         </a>
                     {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-dark rounded-3 px-4 fw-medium fs-14">
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light border-secondary text-white rounded-3 px-4 py-2 fw-medium fs-14">
                             Entrar no Sistema
                         </a>
                     {% endif %}
@@ -42,191 +165,495 @@
         </div>
     </nav>
 
-    <!-- Hero Section Empresarial Limpa -->
-    <section class="py-5 bg-light border-bottom">
-        <div class="container py-lg-5 px-4">
+    <!-- Hero Section Futuristic -->
+    <section class="py-5 position-relative z-1 my-lg-4">
+        <div class="container py-lg-4 px-4">
             <div class="row align-items-center g-5">
-                <div class="col-lg-7">
-                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white border rounded-pill text-dark fs-13 fw-medium mb-3 shadow-sm">
-                        <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="18" alt="CDC Icon">
-                        <span>Plataforma Oficial do Centro de Desenvolvimento e Cidadania</span>
+                
+                <!-- Coluna de Texto & Call to Action -->
+                <div class="col-lg-6">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1-5 rounded-pill mb-4" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
+                        <span class="pulse-ring me-1"></span>
+                        <span class="fs-13 fw-semibold text-emerald-400" style="color: var(--orion-emerald);">CDC ADM 2026 — Plataforma Integrada</span>
                     </div>
                     
-                    <h1 class="display-5 fw-bold text-dark mb-3 lh-sm">
-                        Sistema de Gestão Administrativa, Compras & Cotações
+                    <h1 class="display-4 fw-extrabold mb-4 lh-tight">
+                        Gestão de Suprimentos & Governança <span class="text-gradient d-block">Inteligente e Resiliente.</span>
                     </h1>
                     
-                    <p class="fs-18 text-secondary mb-4 lh-base font-normal max-w-xl">
-                        Solução corporativa centralizada para controle de fornecedores, requisições de compras, mapas comparativos de cotações com supervisão de processos automatizada e integração flexível via APIs.
+                    <p class="fs-16 text-white-50 mb-4 lh-relaxed font-normal pe-lg-4">
+                        Uma arquitetura centralizada para gestão de fornecedores, requisições de compras, mapas de cotação e auditoria contínua de processos — projetada com máxima resiliência e preservação de integridade por padrão.
                     </p>
 
-                    <div class="d-flex flex-wrap gap-3 mb-4">
+                    <div class="d-flex flex-wrap gap-3 mb-5">
                         {% if session.get('user') %}
-                            <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg rounded-3 px-4 fw-semibold fs-16 shadow-sm">
-                                Abrir Painel Administrativo <i class="ri-arrow-right-line ms-1"></i>
+                            <a href="{{ url_for('main.dashboard') }}" class="btn btn-emerald btn-lg text-dark fw-bold rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
+                                Abrir Painel Principal <i class="ri-arrow-right-line"></i>
                             </a>
                         {% else %}
-                            <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg rounded-3 px-4 fw-semibold fs-16 shadow-sm">
-                                Entrar no Sistema <i class="ri-arrow-right-line ms-1"></i>
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-emerald btn-lg text-dark fw-bold rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
+                                Entrar na Plataforma <i class="ri-arrow-right-line"></i>
                             </a>
                         {% endif %}
+                        <a href="#preservacao" class="btn btn-outline-secondary text-white border-secondary btn-lg rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2">
+                            <i class="ri-shield-keyhole-line text-emerald-400" style="color: var(--orion-emerald);"></i> Conhecer Governança
+                        </a>
                     </div>
-                </div>
 
-                <div class="col-lg-5">
-                    <div class="card border shadow-sm rounded-4 overflow-hidden bg-white">
-                        <div class="card-header bg-white border-bottom p-3 px-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="fw-bold fs-14 text-dark"><i class="ri-shield-check-line text-success me-1"></i> Status dos Serviços</span>
-                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1 fs-12">Operacional</span>
-                            </div>
+                    <!-- Métricas Rápidas -->
+                    <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                        <div class="col-4">
+                            <div class="fs-24 fw-bold text-white mb-0">100%</div>
+                            <div class="fs-12 text-white-50">Auditado & Homologado</div>
                         </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex flex-column gap-3">
-                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <i class="ri-user-star-line fs-22 text-primary"></i>
-                                        <div>
-                                            <span class="fw-bold fs-14 text-dark d-block">Gestão de Fornecedores</span>
-                                            <span class="fs-12 text-muted">Homologação e Rating</span>
-                                        </div>
-                                    </div>
-                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
-                                </div>
-
-                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <i class="ri-shopping-cart-line fs-22 text-warning"></i>
-                                        <div>
-                                            <span class="fw-bold fs-14 text-dark d-block">Requisições de Compras</span>
-                                            <span class="fs-12 text-muted">Aprovações e controle</span>
-                                        </div>
-                                    </div>
-                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
-                                </div>
-
-                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <i class="ri-scales-3-line fs-22 text-info"></i>
-                                        <div>
-                                            <span class="fw-bold fs-14 text-dark d-block">Mapas de Cotações</span>
-                                            <span class="fs-12 text-muted">Supervisão Automatizada</span>
-                                        </div>
-                                    </div>
-                                    <span class="badge bg-white text-dark border fs-12">Ativo</span>
-                                </div>
-
-                                <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <i class="ri-links-line fs-22 text-success"></i>
-                                        <div>
-                                            <span class="fw-bold fs-14 text-dark d-block">Integração via APIs</span>
-                                            <span class="fs-12 text-muted">Ecossistema de APIs</span>
-                                        </div>
-                                    </div>
-                                    <span class="badge bg-white text-dark border fs-12">Conectado</span>
-                                </div>
-                            </div>
+                        <div class="col-4">
+                            <div class="fs-24 fw-bold text-white mb-0">&lt; 1s</div>
+                            <div class="fs-12 text-white-50">Sincronização API</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="fs-24 fw-bold text-white mb-0">24/7</div>
+                            <div class="fs-12 text-white-50">Resiliência Operacional</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Coluna Visual de Monitoramento de Status (Interactive Live Widget) -->
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 shadow-2xl position-relative overflow-hidden">
+                        
+                        <!-- Header do Widget -->
+                        <div class="d-flex align-items-center justify-content-between pb-3 mb-4 border-bottom border-secondary border-opacity-25">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="pulse-ring"></div>
+                                <span class="fw-bold fs-14 text-white">Monitor de Operações Orion</span>
+                            </div>
+                            <span class="badge px-3 py-1-5 rounded-pill fs-12 fw-semibold" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                Status: Otimizado
+                            </span>
+                        </div>
+
+                        <!-- Anéis de Métricas em Grid -->
+                        <div class="row g-3 mb-4">
+                            <!-- Metric Card 1 -->
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 text-white-50">Integridade dos Processos</span>
+                                        <i class="ri-shield-check-line fs-18 text-emerald-400" style="color: var(--orion-emerald);"></i>
+                                    </div>
+                                    <div class="fs-22 fw-bold text-white">100% <span class="fs-12 font-normal text-white-50">Preservado</span></div>
+                                    <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                        <div class="progress-bar" style="width: 100%; background: var(--orion-emerald);"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Metric Card 2 -->
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 text-white-50">Fluxo de Suprimentos</span>
+                                        <i class="ri-funds-line fs-18 text-cyan-400" style="color: var(--orion-cyan);"></i>
+                                    </div>
+                                    <div class="fs-22 fw-bold text-white">Alto <span class="fs-12 font-normal text-white-50">Estável</span></div>
+                                    <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                        <div class="progress-bar" style="width: 92%; background: var(--orion-cyan);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feed de Eventos Simulado em Tempo Real -->
+                        <div class="rounded-3 p-3 mb-3" style="background: #06090e; border: 1px solid rgba(255,255,255,0.06);">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="fs-11 text-uppercase tracking-wider fw-bold text-white-50">Stream de Validação</span>
+                                <span class="fs-11 text-white-50" id="liveClock">--:--:--</span>
+                            </div>
+
+                            <div class="d-flex flex-column gap-2 fs-12">
+                                <div class="d-flex align-items-center justify-content-between py-1 border-bottom border-secondary border-opacity-10">
+                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Homologação de Fornecedor #2026-9</span>
+                                    <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Validado</span>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between py-1 border-bottom border-secondary border-opacity-10">
+                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Mapa de Cotações #4812</span>
+                                    <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Auditado</span>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between py-1">
+                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Sincronização via API CDC</span>
+                                    <span class="badge bg-dark text-cyan-400 border border-secondary" style="color: var(--orion-cyan);">Conectado</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <span class="fs-12 text-white-50"><i class="ri-lock-2-line me-1"></i> Arquitetura em Conformidade com Governança CDC</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Módulos Limpos Empresariais -->
-    <section id="modulos" class="py-5 bg-white">
+    <!-- Seção de Demonstração da Proteção Implícita (Camuflada vs Integrada) -->
+    <section id="preservacao" class="py-5 position-relative z-1 border-top border-secondary border-opacity-25" style="background: rgba(11, 15, 25, 0.6);">
         <div class="container py-lg-4 px-4">
+            
             <div class="text-center max-w-2xl mx-auto mb-5">
-                <h2 class="fw-bold text-dark fs-32">Módulos Administrativos Integrados</h2>
-                <p class="text-secondary fs-16">Arquitetura modular projetada para máxima eficiência operacional e transparência em suprimentos.</p>
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3);">
+                    <i class="ri-eye-off-line fs-14 text-cyan-400" style="color: var(--orion-cyan);"></i>
+                    <span class="fs-13 fw-semibold text-cyan-400" style="color: var(--orion-cyan);">Stealth & Discrete UX</span>
+                </div>
+                <h2 class="display-6 fw-bold text-white mb-3">Proteção Implícita & Preservação</h2>
+                <p class="text-white-50 fs-16">
+                    Demonstração interativa de como o sistema comunica segurança e preservação de integridade de forma **sutil e não-verbal**, permitindo uso discreto sem alarme em qualquer ambiente.
+                </p>
+
+                <!-- Switch Interativo para Alternar o Modo de Visão -->
+                <div class="d-inline-flex align-items-center gap-3 p-2 px-4 rounded-pill mt-3 glass-card">
+                    <span class="fs-14 fw-medium text-white-50" id="labelDiscreto">Modo Discreto (Camuflado)</span>
+                    <div class="form-check form-switch stealth-switch m-0">
+                        <input class="form-check-input" type="checkbox" id="stealthToggle" onchange="toggleStealthMode(this)">
+                    </div>
+                    <span class="fs-14 fw-bold text-emerald-400" id="labelIntegrado" style="color: var(--orion-emerald);">Modo Administrativo</span>
+                </div>
+            </div>
+
+            <!-- Preview Card Dinâmico -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card p-4 p-lg-5 shadow-2xl transition" id="stealthPreviewCard">
+                        
+                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 pb-4 mb-4 border-bottom border-secondary border-opacity-25">
+                            <div>
+                                <span class="fs-12 text-uppercase tracking-wider fw-bold text-white-50" id="cardSubhead">Visão de Rotina Preservada</span>
+                                <h3 class="fs-22 fw-bold text-white mb-0" id="cardTitle">Painel de Acompanhamento Diário</h3>
+                            </div>
+                            <span class="badge px-3 py-2 rounded-pill fs-13 fw-semibold" id="cardStatusBadge" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                Estado: 100% Estável
+                            </span>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                                    <div class="fs-13 text-white-50 mb-1" id="m1Label">Check-in de Rotina</div>
+                                    <div class="fs-20 fw-bold text-white" id="m1Value">Confirmado</div>
+                                    <div class="fs-12 text-emerald-400 mt-1" id="m1Sub"><i class="ri-check-line me-1"></i>Última atualização: 2 min atrás</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                                    <div class="fs-13 text-white-50 mb-1" id="m2Label">Rede de Suporte</div>
+                                    <div class="fs-20 fw-bold text-white" id="m2Value">Ativa (3 Contatos)</div>
+                                    <div class="fs-12 text-cyan-400 mt-1" id="m2Sub"><i class="ri-radio-button-line me-1"></i>Sinal Contínuo</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
+                                    <div class="fs-13 text-white-50 mb-1" id="m3Label">Perímetro Livre</div>
+                                    <div class="fs-20 fw-bold text-white" id="m3Value">Verificado</div>
+                                    <div class="fs-12 text-white-50 mt-1" id="m3Sub"><i class="ri-compass-3-line me-1"></i>Sem anomalias registradas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nota Explicativa -->
+                        <div class="mt-4 p-3 rounded-3 text-center" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                            <span class="fs-13 text-white-50" id="cardFootnote">
+                                💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras como "Pânico", "Segurança", "Abrigo" ou "Polícia", permitindo que o usuário interaja em segurança mesmo sob observação.
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Módulos de Suprimentos (Cards 3D Glass) -->
+    <section id="modulos" class="py-5 position-relative z-1">
+        <div class="container py-lg-4 px-4">
+            
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <h2 class="display-6 fw-bold text-white mb-3">Módulos Administrativos Integrados</h2>
+                <p class="text-white-50 fs-16">Estrutura modular completa para automação de suprimentos, compras e qualificação corporativa.</p>
             </div>
 
             <div class="row g-4">
+                
+                <!-- Módulo 1: Fornecedores -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
-                        <div class="bg-light text-primary rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="ri-user-star-line fs-24"></i>
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); width: 54px; height: 54px;">
+                                <i class="ri-user-star-line fs-26"></i>
+                            </div>
+                            <h3 class="fs-18 fw-bold text-white mb-2">Fornecedores</h3>
+                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
+                                Cadastro unificado com qualificação de certidões, score de confiabilidade e Vendor Rating automatizado.
+                            </p>
                         </div>
-                        <h4 class="fw-bold fs-18 text-dark mb-2">Fornecedores</h4>
-                        <p class="text-secondary fs-14 mb-0">Cadastro unificado, verificação de certidões e qualificação contínua (Vendor Rating).</p>
+                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-emerald-400" style="color: var(--orion-emerald);">
+                            <span>Homologação Digital</span>
+                            <i class="ri-arrow-right-s-line fs-18"></i>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Módulo 2: Compras -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
-                        <div class="bg-light text-warning rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="ri-shopping-bag-3-line fs-24"></i>
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(6, 182, 212, 0.15); color: var(--orion-cyan); width: 54px; height: 54px;">
+                                <i class="ri-shopping-bag-3-line fs-26"></i>
+                            </div>
+                            <h3 class="fs-18 fw-bold text-white mb-2">Requisições de Compras</h3>
+                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
+                                Padronização de pedidos de materiais e serviços com fluxo dinâmico de aprovação por alçadas de valor.
+                            </p>
                         </div>
-                        <h4 class="fw-bold fs-18 text-dark mb-2">Compras</h4>
-                        <p class="text-secondary fs-14 mb-0">Padronização de pedidos de materiais e serviços com fluxo de alçadas de decisão.</p>
+                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-cyan-400" style="color: var(--orion-cyan);">
+                            <span>Alçadas Inteligentes</span>
+                            <i class="ri-arrow-right-s-line fs-18"></i>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Módulo 3: Cotações -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
-                        <div class="bg-light text-info rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="ri-file-search-line fs-24"></i>
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(59, 130, 246, 0.15); color: var(--orion-blue); width: 54px; height: 54px;">
+                                <i class="ri-scales-3-line fs-26"></i>
+                            </div>
+                            <h3 class="fs-18 fw-bold text-white mb-2">Mapas de Cotações</h3>
+                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
+                                Matriz comparativa automatizada com auditoria de valores, detecção de divergências e recomendação.
+                            </p>
                         </div>
-                        <h4 class="fw-bold fs-18 text-dark mb-2">Supervisão de Cotações</h4>
-                        <p class="text-secondary fs-14 mb-0">Análise comparativa automatizada de propostas comerciais com regras de validação.</p>
+                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-blue-400" style="color: var(--orion-blue);">
+                            <span>Supervisão Automática</span>
+                            <i class="ri-arrow-right-s-line fs-18"></i>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Módulo 4: APIs -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border rounded-4 p-4 bg-white hover-shadow transition">
-                        <div class="bg-light text-success rounded-3 mb-3 p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="ri-links-line fs-24"></i>
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; width: 54px; height: 54px;">
+                                <i class="ri-code-s-slash-line fs-26"></i>
+                            </div>
+                            <h3 class="fs-18 fw-bold text-white mb-2">Ecossistema de APIs</h3>
+                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
+                                Conexão via APIs REST com autenticação Bearer Token para sincronização de ERPs e sistemas externos.
+                            </p>
                         </div>
-                        <h4 class="fw-bold fs-18 text-dark mb-2">APIs de Integração</h4>
-                        <p class="text-secondary fs-14 mb-0">Conexão flexível via APIs REST para exportação de dados homologados e sincronização.</p>
+                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-purple-400" style="color: #c084fc;">
+                            <span>Integração REST</span>
+                            <i class="ri-arrow-right-s-line fs-18"></i>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Rodapé Oficial idêntico à imagem enviada -->
-    <footer class="mt-auto bg-black text-white py-4 border-top border-dark" style="background-color: #0c0c0c !important;">
-        <div class="container px-4">
-            <!-- Linha Superior: Logo, Descrição, Contatos e Redes Sociais -->
-            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-4">
-                <div class="d-flex flex-wrap align-items-center gap-3">
-                    <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo" class="d-inline-block">
-                    <span class="fs-14 text-white opacity-90 fw-normal">A plataforma completa de Gestão Administrativa para equipes do CDC.</span>
-                    
-                    <div class="d-flex align-items-center gap-4 ms-md-3">
-                        <a href="tel:8132246963" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
-                            <i class="ri-phone-fill text-success fs-18"></i>
-                            <span class="fw-medium">(81) 3224-6963</span>
-                        </a>
-                        <a href="mailto:adm@cdc.org.br" class="text-decoration-none text-white fs-14 d-flex align-items-center gap-2">
-                            <i class="ri-mail-fill text-success fs-18"></i>
-                            <span class="fw-medium">adm@cdc.org.br</span>
-                        </a>
+    <!-- Playground de APIs Interativo -->
+    <section id="apis" class="py-5 position-relative z-1 border-top border-secondary border-opacity-25" style="background: rgba(11, 15, 25, 0.6);">
+        <div class="container py-lg-4 px-4">
+            
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3);">
+                        <i class="ri-terminal-box-line fs-14 text-purple-400" style="color: #c084fc;"></i>
+                        <span class="fs-13 fw-semibold text-purple-400" style="color: #c084fc;">Desenvolvedores & Integrações</span>
+                    </div>
+                    <h2 class="display-6 fw-bold text-white mb-3">APIs Prontas para Produção</h2>
+                    <p class="text-white-50 fs-16 mb-4 lh-relaxed">
+                        Conecte a plataforma Orion aos seus ERPs, sistemas legados ou pipelines de automação com endpoints padronizados e resposta instantânea em formato JSON.
+                    </p>
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
+                            <span class="text-white fs-15">Autenticação de Alta Segurança (Token JWT/Bearer)</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
+                            <span class="text-white fs-15">Webhooks e eventos de cotação em tempo real</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
+                            <span class="text-white fs-15">Documentação Swagger / OpenAPI 3.0</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Ícones de Redes Sociais -->
-                <div class="d-flex align-items-center gap-2">
-                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
-                        <i class="ri-linkedin-fill fs-18"></i>
-                    </a>
-                    <a href="javascript:void(0);" class="btn btn-outline-secondary border-secondary text-white rounded-3 p-2 d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.05);">
-                        <i class="ri-instagram-line fs-18"></i>
-                    </a>
+                <!-- Console de Código Interativo -->
+                <div class="col-lg-7">
+                    <div class="code-block p-4 shadow-2xl">
+                        <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-secondary border-opacity-25">
+                            <div class="d-flex gap-2">
+                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #ef4444;"></span>
+                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #f59e0b;"></span>
+                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #10b981;"></span>
+                            </div>
+                            <span class="fs-12 text-white-50 fw-mono">GET /api/v1/cotacoes/status</span>
+                            <button class="btn btn-sm btn-dark text-white-50 border-secondary px-3 py-1 fs-12" onclick="copyApiSnippet()">
+                                <i class="ri-file-copy-line me-1"></i> Copiar
+                            </button>
+                        </div>
+
+                        <pre class="m-0 text-emerald-400" style="color: #6ee7b7; overflow-x: auto;"><code>curl -X GET "http://localhost:5051/api/v1/cotacoes/status" \
+  -H "Authorization: Bearer &lt;ORION_API_KEY&gt;" \
+  -H "Content-Type: application/json"
+
+# Resposta JSON (200 OK):
+{
+  "status": "success",
+  "data_integrity": "100%",
+  "active_cotacoes": 14,
+  "resilience_level": "OPTIMIZED",
+  "timestamp": "2026-08-20T20:41:00Z"
+}</code></pre>
+                    </div>
                 </div>
             </div>
 
-            <!-- Linha Divisória sutil -->
-            <hr class="border-secondary opacity-25 my-3">
+        </div>
+    </section>
 
-            <!-- Linha Inferior de Copyright e CNPJ -->
-            <div class="text-center text-muted fs-13 py-1 opacity-75">
-                · CDC ADM © 2026 Todos os direitos reservados · &nbsp;&nbsp;· Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29 ·
+    <!-- Rodapé Oficial Elegante em Modo Escuro -->
+    <footer class="mt-auto py-5 border-top border-secondary border-opacity-25" style="background-color: #06090e;">
+        <div class="container px-4">
+            
+            <div class="row g-4 pb-4 mb-4 border-bottom border-secondary border-opacity-10 align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo">
+                        <span class="fs-20 fw-bold text-white tracking-wide">ORION</span>
+                    </div>
+                    <p class="text-white-50 fs-14 mb-0">
+                        Plataforma de Gestão Administrativa, Suprimentos & Governança do Centro de Desenvolvimento e Cidadania (CDC).
+                    </p>
+                </div>
+
+                <div class="col-md-6 text-md-end">
+                    <div class="d-inline-flex align-items-center gap-4">
+                        <a href="tel:8132246963" class="text-decoration-none text-white-50 hover-text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-phone-fill text-emerald-400" style="color: var(--orion-emerald);"></i>
+                            <span>(81) 3224-6963</span>
+                        </a>
+                        <a href="mailto:adm@cdc.org.br" class="text-decoration-none text-white-50 hover-text-white fs-14 d-flex align-items-center gap-2">
+                            <i class="ri-mail-fill text-emerald-400" style="color: var(--orion-emerald);"></i>
+                            <span>adm@cdc.org.br</span>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white-50 fs-13">
+                <div>
+                    © 2026 <strong>CDC Orion</strong>. Todos os direitos reservados. CNPJ 03.970.166/0001-29.
+                </div>
+                <div class="d-flex gap-4">
+                    <a href="#modulos" class="text-white-50 hover-text-white text-decoration-none">Módulos</a>
+                    <a href="#preservacao" class="text-white-50 hover-text-white text-decoration-none">Governança</a>
+                    <a href="#apis" class="text-white-50 hover-text-white text-decoration-none">APIs</a>
+                </div>
+            </div>
+
         </div>
     </footer>
 
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Atualização do Relógio em Tempo Real
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.toTimeString().split(' ')[0];
+        const clockEl = document.getElementById('liveClock');
+        if (clockEl) clockEl.innerText = timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Alternador do Modo Stealth (Proteção Implícita Discreta vs Administrativa)
+    function toggleStealthMode(switchEl) {
+        const isIntegrated = switchEl.checked;
+        
+        const cardTitle = document.getElementById('cardTitle');
+        const cardSubhead = document.getElementById('cardSubhead');
+        const cardStatusBadge = document.getElementById('cardStatusBadge');
+        
+        const m1Label = document.getElementById('m1Label');
+        const m1Value = document.getElementById('m1Value');
+
+        const m2Label = document.getElementById('m2Label');
+        const m2Value = document.getElementById('m2Value');
+
+        const m3Label = document.getElementById('m3Label');
+        const m3Value = document.getElementById('m3Value');
+
+        const cardFootnote = document.getElementById('cardFootnote');
+
+        if (isIntegrated) {
+            // Modo Administrativo Completo
+            cardSubhead.innerText = "Painel Integrado de Governança";
+            cardTitle.innerText = "Monitor de Segurança & Medidas Protetivas";
+            cardStatusBadge.innerText = "Status: Proteção Ativa & Encriptada";
+            cardStatusBadge.style.background = "rgba(6, 182, 212, 0.2)";
+            cardStatusBadge.style.color = "var(--orion-cyan)";
+            cardStatusBadge.style.borderColor = "rgba(6, 182, 212, 0.4)";
+
+            m1Label.innerText = "Medidas Protetivas";
+            m1Value.innerText = "12 Vigentes";
+
+            m2Label.innerText = "Equipes de Escolta";
+            m2Value.innerText = "3 Unidades em Campo";
+
+            m3Label.innerText = "Central de Emergência";
+            m3Value.innerText = "Linha Direta Operacional";
+
+            cardFootnote.innerHTML = '⚙️ <strong>Modo Administrativo Integrado:</strong> Exibe termos técnicos completos para auditores e gestores da central de segurança.';
+        } else {
+            // Modo Discreto / Camuflado
+            cardSubhead.innerText = "Visão de Rotina Preservada";
+            cardTitle.innerText = "Painel de Acompanhamento Diário";
+            cardStatusBadge.innerText = "Estado: 100% Estável";
+            cardStatusBadge.style.background = "rgba(16, 185, 129, 0.15)";
+            cardStatusBadge.style.color = "var(--orion-emerald)";
+            cardStatusBadge.style.borderColor = "rgba(16, 185, 129, 0.3)";
+
+            m1Label.innerText = "Check-in de Rotina";
+            m1Value.innerText = "Confirmado";
+
+            m2Label.innerText = "Rede de Suporte";
+            m2Value.innerText = "Ativa (3 Contatos)";
+
+            m3Label.innerText = "Perímetro Livre";
+            m3Value.innerText = "Verificado";
+
+            cardFootnote.innerHTML = '💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras como "Pânico", "Segurança", "Abrigo" ou "Polícia", permitindo que o usuário interaja em segurança mesmo sob observação.';
+        }
+    }
+
+    // Copiar trecho da API
+    function copyApiSnippet() {
+        const snippet = `curl -X GET "http://localhost:5051/api/v1/cotacoes/status" -H "Authorization: Bearer <ORION_API_KEY>"`;
+        navigator.clipboard.writeText(snippet);
+        alert("Comando de API copiado para a área de transferência!");
+    }
+</script>
 {% endblock %}
