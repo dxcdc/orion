@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Orion — Plataforma de Preservação, Acompanhamento & Conectividade{% endblock %}
+{% block title %}Orion — Tecnologia para cuidar de quem faz acontecer{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -8,11 +8,9 @@
     :root {
         --orion-bg: #090d16;
         --orion-surface: #111827;
-        --orion-glass: rgba(17, 24, 39, 0.7);
+        --orion-glass: rgba(17, 24, 39, 0.75);
         --orion-border: rgba(255, 255, 255, 0.08);
-        --orion-border-glow: rgba(16, 185, 129, 0.25);
         --orion-emerald: #10b981;
-        --orion-emerald-glow: rgba(16, 185, 129, 0.4);
         --orion-cyan: #06b6d4;
         --orion-blue: #3b82f6;
     }
@@ -96,6 +94,37 @@
         100% { transform: scale(3.2); opacity: 0; }
     }
 
+    /* Animated Rotating Text (+) */
+    .animated-text-span {
+        display: inline-block;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+    .animated-text-span.fade-out {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    .animated-text-span.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Pill Button Style */
+    .btn-pill-action {
+        border-radius: 50rem;
+        padding: 0.85rem 2.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+    .btn-pill-action:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+    }
+
     /* Code Playground */
     .code-block {
         background: #06090e;
@@ -134,8 +163,8 @@
                     <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" alt="CDC Logo" height="30">
                 </div>
                 <div>
-                    <span class="fs-18 fw-bold text-white d-block lh-1 tracking-wide">ORION</span>
-                    <span class="fs-11 text-emerald-400 fw-semibold tracking-wider text-uppercase" style="color: var(--orion-emerald);">Ecossistema de Preservação CDC</span>
+                    <span class="fs-18 fw-bold text-white d-block lh-1 tracking-wide">CDC <span style="color: var(--orion-emerald);">ORION</span></span>
+                    <span class="fs-11 text-white-50 fw-semibold tracking-wider text-uppercase">Plataforma de Preservação & Suporte</span>
                 </div>
             </a>
 
@@ -151,13 +180,19 @@
                 </ul>
 
                 <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light border-secondary text-white rounded-pill px-3 py-1-5 fs-13 dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                            <i class="ri-global-line"></i> CDC Essencial
+                        </button>
+                    </div>
+
                     {% if session.get('user') %}
-                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-emerald text-dark fw-bold rounded-3 px-4 py-2 fs-14 d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--orion-emerald);">
-                            <i class="ri-dashboard-3-line"></i> Acessar Espaço
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-emerald text-dark fw-bold rounded-pill px-4 py-2 fs-14 d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--orion-emerald);">
+                            <i class="ri-dashboard-3-line"></i> Acessar Painel
                         </a>
                     {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light border-secondary text-white rounded-3 px-4 py-2 fw-medium fs-14">
-                            Entrar no Sistema
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-emerald text-dark fw-bold rounded-pill px-4 py-2 fs-14 d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--orion-emerald);">
+                            <i class="ri-login-circle-line"></i> Login
                         </a>
                     {% endif %}
                 </div>
@@ -165,60 +200,45 @@
         </div>
     </nav>
 
-    <!-- Hero Section Futuristic -->
+    <!-- Hero Section Inspirado no Layout Oficial CDC -->
     <section class="py-5 position-relative z-1 my-lg-4">
         <div class="container py-lg-4 px-4">
             <div class="row align-items-center g-5">
                 
-                <!-- Coluna de Texto & Call to Action -->
-                <div class="col-lg-6">
-                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1-5 rounded-pill mb-4" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
-                        <span class="pulse-ring me-1"></span>
-                        <span class="fs-13 fw-semibold text-emerald-400" style="color: var(--orion-emerald);">Plataforma de Preservação & Acompanhamento</span>
+                <!-- Coluna de Texto Principal com Animação -->
+                <div class="col-lg-7">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="text-white-50 fw-bold fs-13 tracking-widest text-uppercase">— SISTEMA DE PRESERVAÇÃO & RH DO CDC</span>
                     </div>
                     
-                    <h1 class="display-4 fw-extrabold mb-4 lh-tight">
-                        Tranquilidade, Suporte & Preservação <span class="text-gradient d-block">Com Discrição Total.</span>
+                    <h1 class="display-4 fw-extrabold text-white mb-3 lh-tight">
+                        Tecnologia para cuidar de quem faz acontecer,
                     </h1>
-                    
-                    <p class="fs-16 text-white-50 mb-4 lh-relaxed font-normal pe-lg-4">
-                        Uma solução desenvolvida para garantir suporte contínuo, verificação de integridade de rotinas, rede de acompanhamento e sinalização em tempo real — com linguagem neutra e preservação absoluta do usuário em qualquer situação.
+
+                    <p class="fs-22 text-white-50 mb-4 lh-base font-normal max-w-2xl">
+                        Apoiando os Colaboradores e parceiros em sua rotina de trabalho.
                     </p>
 
-                    <div class="d-flex flex-wrap gap-3 mb-5">
-                        {% if session.get('user') %}
-                            <a href="{{ url_for('main.dashboard') }}" class="btn btn-emerald btn-lg text-dark fw-bold rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
-                                Acessar Painel Principal <i class="ri-arrow-right-line"></i>
-                            </a>
-                        {% else %}
-                            <a href="{{ url_for('auth.login') }}" class="btn btn-emerald btn-lg text-dark fw-bold rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
-                                Acessar Espaço Protegido <i class="ri-arrow-right-line"></i>
-                            </a>
-                        {% endif %}
-                        <a href="#preservacao" class="btn btn-outline-secondary text-white border-secondary btn-lg rounded-3 px-4 py-3 fs-15 d-inline-flex align-items-center gap-2">
-                            <i class="ri-shield-keyhole-line text-emerald-400" style="color: var(--orion-emerald);"></i> Entender Proteção Implícita
-                        </a>
+                    <!-- Palavra Animada com (+) -->
+                    <div class="mb-5 py-2">
+                        <span class="display-5 fw-extrabold animated-text-span" id="animatedPlusText" style="color: var(--orion-emerald);">+ Agilidade</span>
                     </div>
 
-                    <!-- Métricas Rápidas -->
-                    <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
-                        <div class="col-4">
-                            <div class="fs-24 fw-bold text-white mb-0">100%</div>
-                            <div class="fs-12 text-white-50">Integridade Preservada</div>
-                        </div>
-                        <div class="col-4">
-                            <div class="fs-24 fw-bold text-white mb-0">Sinal 24/7</div>
-                            <div class="fs-12 text-white-50">Rede de Suporte Ativa</div>
-                        </div>
-                        <div class="col-4">
-                            <div class="fs-24 fw-bold text-white mb-0">Modo Stealth</div>
-                            <div class="fs-12 text-white-50">Discrição por Padrão</div>
-                        </div>
+                    <div class="d-flex flex-wrap gap-4 align-items-center">
+                        {% if session.get('user') %}
+                            <a href="{{ url_for('main.dashboard') }}" class="btn btn-pill-action text-dark d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
+                                COMEÇAR AGORA <i class="ri-arrow-right-line fs-18"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-pill-action text-dark d-inline-flex align-items-center gap-2 shadow-lg" style="background: var(--orion-emerald);">
+                                COMEÇAR AGORA <i class="ri-arrow-right-line fs-18"></i>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
 
                 <!-- Coluna Visual de Monitoramento de Status (Interactive Live Widget) -->
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="glass-card p-4 shadow-2xl position-relative overflow-hidden">
                         
                         <!-- Header do Widget -->
@@ -228,7 +248,7 @@
                                 <span class="fw-bold fs-14 text-white">Monitor de Preservação Orion</span>
                             </div>
                             <span class="badge px-3 py-1-5 rounded-pill fs-12 fw-semibold" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
-                                Estado: 100% Estável
+                                Status: 100% Estável
                             </span>
                         </div>
 
@@ -238,10 +258,10 @@
                             <div class="col-6">
                                 <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 text-white-50">Integridade de Perímetro</span>
+                                        <span class="fs-12 text-white-50">Integridade dos Dados</span>
                                         <i class="ri-shield-check-line fs-18 text-emerald-400" style="color: var(--orion-emerald);"></i>
                                     </div>
-                                    <div class="fs-22 fw-bold text-white">100% <span class="fs-12 font-normal text-white-50">Preservado</span></div>
+                                    <div class="fs-20 fw-bold text-white">100% <span class="fs-12 font-normal text-white-50">Preservado</span></div>
                                     <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
                                         <div class="progress-bar" style="width: 100%; background: var(--orion-emerald);"></div>
                                     </div>
@@ -252,10 +272,10 @@
                             <div class="col-6">
                                 <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 text-white-50">Rede de Acompanhamento</span>
+                                        <span class="fs-12 text-white-50">Suporte a Parceiros</span>
                                         <i class="ri-radio-button-line fs-18 text-cyan-400" style="color: var(--orion-cyan);"></i>
                                     </div>
-                                    <div class="fs-22 fw-bold text-white">Ativa <span class="fs-12 font-normal text-white-50">Sinal Contínuo</span></div>
+                                    <div class="fs-20 fw-bold text-white">Ativo <span class="fs-12 font-normal text-white-50">Conectado</span></div>
                                     <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
                                         <div class="progress-bar" style="width: 100%; background: var(--orion-cyan);"></div>
                                     </div>
@@ -266,7 +286,7 @@
                         <!-- Feed de Eventos Simulado em Tempo Real -->
                         <div class="rounded-3 p-3 mb-3" style="background: #06090e; border: 1px solid rgba(255,255,255,0.06);">
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <span class="fs-11 text-uppercase tracking-wider fw-bold text-white-50">Stream de Registros de Rotina</span>
+                                <span class="fs-11 text-uppercase tracking-wider fw-bold text-white-50">Registros de Rotina</span>
                                 <span class="fs-11 text-white-50" id="liveClock">--:--:--</span>
                             </div>
 
@@ -276,18 +296,18 @@
                                     <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Confirmado</span>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between py-1 border-bottom border-secondary border-opacity-10">
-                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Confirmação de Sinal de Suporte</span>
+                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Confirmação de Sinal de Apoio</span>
                                     <span class="badge bg-dark text-emerald-400 border border-secondary" style="color: var(--orion-emerald);">Ativo</span>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between py-1">
-                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Atualização de Protocolo de Preservação</span>
+                                    <span class="text-white-50"><i class="ri-checkbox-circle-fill text-success me-2"></i> Atualização de Protocolo</span>
                                     <span class="badge bg-dark text-cyan-400 border border-secondary" style="color: var(--orion-cyan);">Sincronizado</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-center">
-                            <span class="fs-12 text-white-50"><i class="ri-lock-2-line me-1"></i> Ambiente em Conformidade com Protocolos de Preservação CDC</span>
+                            <span class="fs-12 text-white-50"><i class="ri-lock-2-line me-1"></i> Conformidade com Protocolos CDC</span>
                         </div>
                     </div>
                 </div>
@@ -307,7 +327,7 @@
                 </div>
                 <h2 class="display-6 fw-bold text-white mb-3">Proteção Não-Verbal & Discreção Total</h2>
                 <p class="text-white-50 fs-16">
-                    Experimente abaixo o alternador de visão: veja como a interface comunica segurança e acompanhamento para o usuário protegido usando **termos neutros de rotina**, sem expor a real natureza do programa caso a tela seja vista por terceiros.
+                    Experimente abaixo o alternador de visão: veja como a interface comunica segurança e acompanhamento para o colaborador usando **termos neutros de rotina**, sem expor a real natureza do programa.
                 </p>
 
                 <!-- Switch Interativo para Alternar o Modo de Visão -->
@@ -361,7 +381,7 @@
                         <!-- Nota Explicativa -->
                         <div class="mt-4 p-3 rounded-3 text-center" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
                             <span class="fs-13 text-white-50" id="cardFootnote">
-                                💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras denunciantes como "Pânico", "Segurança", "Abrigo", "Polícia" ou "Processo", permitindo que o usuário interaja em segurança mesmo sob observação indesejada.
+                                💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras como "Pânico", "Segurança", "Abrigo" ou "Polícia", permitindo que o colaborador interaja em segurança mesmo sob observação indesejada.
                             </span>
                         </div>
 
@@ -519,7 +539,7 @@
   "data_integrity": "100%",
   "support_network": "active",
   "stealth_mode": "enabled",
-  "timestamp": "2026-08-20T20:44:00Z"
+  "timestamp": "2026-08-20T20:53:00Z"
 }</code></pre>
                     </div>
                 </div>
@@ -536,10 +556,10 @@
                 <div class="col-md-6">
                     <div class="d-flex align-items-center gap-3 mb-2">
                         <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo">
-                        <span class="fs-20 fw-bold text-white tracking-wide">ORION</span>
+                        <span class="fs-20 fw-bold text-white tracking-wide">CDC <span style="color: var(--orion-emerald);">ORION</span></span>
                     </div>
                     <p class="text-white-50 fs-14 mb-0">
-                        Plataforma de Preservação, Acompanhamento & Governança do Centro de Desenvolvimento e Cidadania (CDC).
+                        A plataforma completa de preservação e acompanhamento para equipes do CDC.
                     </p>
                 </div>
 
@@ -559,7 +579,7 @@
 
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white-50 fs-13">
                 <div>
-                    © 2026 <strong>CDC Orion</strong>. Todos os direitos reservados. CNPJ 03.970.166/0001-29.
+                    CDC Relógio © 2026 Todos os direitos reservados · Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29
                 </div>
                 <div class="d-flex gap-4">
                     <a href="#modulos" class="text-white-50 hover-text-white text-decoration-none">Recursos</a>
@@ -576,6 +596,30 @@
 
 {% block extra_scripts %}
 <script>
+    // Animação das Palavras com (+)
+    (function initRotatingText() {
+        const words = [
+            "+ Agilidade",
+            "+ Preservação",
+            "+ Discrição",
+            "+ Proximidade"
+        ];
+        let index = 0;
+        const targetEl = document.getElementById("animatedPlusText");
+        
+        if (!targetEl) return;
+
+        setInterval(() => {
+            targetEl.classList.add("fade-out");
+            setTimeout(() => {
+                index = (index + 1) % words.length;
+                targetEl.innerText = words[index];
+                targetEl.classList.remove("fade-out");
+                targetEl.classList.add("fade-in");
+            }, 350);
+        }, 2500);
+    })();
+
     // Atualização do Relógio em Tempo Real
     function updateClock() {
         const now = new Date();
@@ -642,7 +686,7 @@
             m3Label.innerText = "Perímetro Livre";
             m3Value.innerText = "Verificado";
 
-            cardFootnote.innerHTML = '💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras denunciantes como "Pânico", "Segurança", "Abrigo", "Polícia" ou "Processo", permitindo que o usuário interaja em segurança mesmo sob observação indesejada.';
+            cardFootnote.innerHTML = '💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras denunciantes como "Pânico", "Segurança", "Abrigo", "Polícia" ou "Processo", permitindo que o colaborador interaja em segurança mesmo sob observação indesejada.';
         }
     }
 
