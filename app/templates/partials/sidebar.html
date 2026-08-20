@@ -92,8 +92,13 @@
 <style>
 /* Estilo do Menu Lateral Retrátil no Hover (75px -> 280px) idêntico à imagem CDC */
 .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     width: 75px;
     min-width: 75px;
+    z-index: 1050;
     transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-x: hidden;
     white-space: nowrap;
