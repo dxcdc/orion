@@ -55,19 +55,6 @@
         transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .glass-card:hover {
-        border-color: rgba(16, 185, 129, 0.35);
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.15);
-    }
-
-    /* Text Gradient */
-    .text-gradient {
-        background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 50%, #38bdf8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
     /* Pulse Indicator */
     .pulse-ring {
         position: relative;
@@ -124,28 +111,6 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
     }
-
-    /* Code Playground */
-    .code-block {
-        background: #06090e;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 0.85rem;
-        font-family: 'Fira Code', 'Courier New', monospace;
-        font-size: 0.875rem;
-    }
-
-    /* Custom Switch Toggle */
-    .stealth-switch .form-check-input {
-        width: 3rem;
-        height: 1.6rem;
-        cursor: pointer;
-        background-color: #1f2937;
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-    .stealth-switch .form-check-input:checked {
-        background-color: var(--orion-emerald);
-        border-color: var(--orion-emerald);
-    }
 </style>
 {% endblock %}
 
@@ -173,8 +138,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarMain">
-
-
                 <div class="d-flex align-items-center gap-3 ms-auto">
                     <div class="dropdown">
                         <button class="btn btn-outline-light border-secondary text-white rounded-pill px-3 py-1-5 fs-13 dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
@@ -197,7 +160,7 @@
     </nav>
 
     <!-- Hero Section Inspirado no Layout Oficial CDC -->
-    <section class="py-5 position-relative z-1 my-lg-4">
+    <section class="py-5 position-relative z-1 my-lg-5 flex-grow-1 d-flex align-items-center">
         <div class="container py-lg-4 px-4">
             <div class="row align-items-center g-5">
                 
@@ -312,276 +275,37 @@
         </div>
     </section>
 
-    <!-- Seção de Demonstração da Proteção Implícita (Camuflada vs Integrada) -->
-    <section id="preservacao" class="py-5 position-relative z-1 border-top border-secondary border-opacity-25" style="background: rgba(11, 15, 25, 0.6);">
-        <div class="container py-lg-4 px-4">
-            
-            <div class="text-center max-w-2xl mx-auto mb-5">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3);">
-                    <i class="ri-eye-off-line fs-14 text-cyan-400" style="color: var(--orion-cyan);"></i>
-                    <span class="fs-13 fw-semibold text-cyan-400" style="color: var(--orion-cyan);">Arquitetura de Linguagem Implícita</span>
-                </div>
-                <h2 class="display-6 fw-bold text-white mb-3">Proteção Não-Verbal & Discreção Total</h2>
-                <p class="text-white-50 fs-16">
-                    Experimente abaixo o alternador de visão: veja como a interface comunica segurança e acompanhamento para o colaborador usando **termos neutros de rotina**, sem expor a real natureza do programa.
-                </p>
-
-                <!-- Switch Interativo para Alternar o Modo de Visão -->
-                <div class="d-inline-flex align-items-center gap-3 p-2 px-4 rounded-pill mt-3 glass-card">
-                    <span class="fs-14 fw-medium text-white-50" id="labelDiscreto">Visão Camuflada (Discreta)</span>
-                    <div class="form-check form-switch stealth-switch m-0">
-                        <input class="form-check-input" type="checkbox" id="stealthToggle" onchange="toggleStealthMode(this)">
-                    </div>
-                    <span class="fs-14 fw-bold text-emerald-400" id="labelIntegrado" style="color: var(--orion-emerald);">Visão Administrativa (Central)</span>
-                </div>
-            </div>
-
-            <!-- Preview Card Dinâmico -->
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="glass-card p-4 p-lg-5 shadow-2xl transition" id="stealthPreviewCard">
-                        
-                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 pb-4 mb-4 border-bottom border-secondary border-opacity-25">
-                            <div>
-                                <span class="fs-12 text-uppercase tracking-wider fw-bold text-white-50" id="cardSubhead">Visão de Rotina Preservada</span>
-                                <h3 class="fs-22 fw-bold text-white mb-0" id="cardTitle">Painel de Acompanhamento Diário</h3>
-                            </div>
-                            <span class="badge px-3 py-2 rounded-pill fs-13 fw-semibold" id="cardStatusBadge" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
-                                Estado: 100% Estável
-                            </span>
-                        </div>
-
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
-                                    <div class="fs-13 text-white-50 mb-1" id="m1Label">Check-in de Rotina</div>
-                                    <div class="fs-20 fw-bold text-white" id="m1Value">Confirmado</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
-                                    <div class="fs-13 text-white-50 mb-1" id="m2Label">Rede de Suporte</div>
-                                    <div class="fs-20 fw-bold text-white" id="m2Value">Ativa (3 Contatos)</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);">
-                                    <div class="fs-13 text-white-50 mb-1" id="m3Label">Perímetro Livre</div>
-                                    <div class="fs-20 fw-bold text-white" id="m3Value">Verificado</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Nota Explicativa -->
-                        <div class="mt-4 p-3 rounded-3 text-center" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
-                            <span class="fs-13 text-white-50" id="cardFootnote">
-                                💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras como "Pânico", "Segurança", "Abrigo" ou "Polícia", permitindo que o colaborador interaja em segurança mesmo sob observação indesejada.
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Módulos de Preservação e Rotina (Cards 3D Glass) -->
-    <section id="modulos" class="py-5 position-relative z-1">
-        <div class="container py-lg-4 px-4">
-            
-            <div class="text-center max-w-2xl mx-auto mb-5">
-                <h2 class="display-6 fw-bold text-white mb-3">Recursos de Acompanhamento & Suporte</h2>
-                <p class="text-white-50 fs-16">Módulos desenhados para oferecer assistência contínua, gestão de contatos e monitoramento não-invasivo.</p>
-            </div>
-
-            <div class="row g-4">
-                
-                <!-- Módulo 1: Registros de Presença -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(16, 185, 129, 0.15); color: var(--orion-emerald); width: 54px; height: 54px;">
-                                <i class="ri-user-heart-line fs-26"></i>
-                            </div>
-                            <h3 class="fs-18 fw-bold text-white mb-2">Check-in de Rotina</h3>
-                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
-                                Confirmações periódicas de bem-estar de forma discreta, com atualização automática para a rede de tutores.
-                            </p>
-                        </div>
-                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-emerald-400" style="color: var(--orion-emerald);">
-                            <span>Confirmação Discreta</span>
-                            <i class="ri-arrow-right-s-line fs-18"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Módulo 2: Rede de Apoio -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(6, 182, 212, 0.15); color: var(--orion-cyan); width: 54px; height: 54px;">
-                                <i class="ri-team-line fs-26"></i>
-                            </div>
-                            <h3 class="fs-18 fw-bold text-white mb-2">Rede de Suporte</h3>
-                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
-                                Conexão direta com contatos confiáveis e equipe de acolhimento sob codinomes neutros.
-                            </p>
-                        </div>
-                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-cyan-400" style="color: var(--orion-cyan);">
-                            <span>Contatos Habilitados</span>
-                            <i class="ri-arrow-right-s-line fs-18"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Módulo 3: Monitor de Perímetro -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(59, 130, 246, 0.15); color: var(--orion-blue); width: 54px; height: 54px;">
-                                <i class="ri-compass-3-line fs-26"></i>
-                            </div>
-                            <h3 class="fs-18 fw-bold text-white mb-2">Monitor de Integridade</h3>
-                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
-                                Acompanhamento constante do perímetro de conforto com alerta silencioso visual em caso de aproximação.
-                            </p>
-                        </div>
-                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-blue-400" style="color: var(--orion-blue);">
-                            <span>Verificação Contínua</span>
-                            <i class="ri-arrow-right-s-line fs-18"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Módulo 4: Sinalização Silenciosa -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="rounded-3 p-3 mb-4 d-inline-flex align-items-center justify-content-center" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; width: 54px; height: 54px;">
-                                <i class="ri-signal-tower-line fs-26"></i>
-                            </div>
-                            <h3 class="fs-18 fw-bold text-white mb-2">Conectividade Silenciosa</h3>
-                            <p class="fs-14 text-white-50 mb-4 lh-relaxed">
-                                Emissão de sinalização de apoio e localização sem emissão de sons ou notificações comprometedoras.
-                            </p>
-                        </div>
-                        <div class="pt-3 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between fs-13 text-purple-400" style="color: #c084fc;">
-                            <span>Transmissão Segura</span>
-                            <i class="ri-arrow-right-s-line fs-18"></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Playground de APIs Interativo de Conectividade -->
-    <section id="apis" class="py-5 position-relative z-1 border-top border-secondary border-opacity-25" style="background: rgba(11, 15, 25, 0.6);">
-        <div class="container py-lg-4 px-4">
-            
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5">
-                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3);">
-                        <i class="ri-terminal-box-line fs-14 text-purple-400" style="color: #c084fc;"></i>
-                        <span class="fs-13 fw-semibold text-purple-400" style="color: #c084fc;">Integração de Canais Silenciosos</span>
-                    </div>
-                    <h2 class="display-6 fw-bold text-white mb-3">APIs de Comunicação Protegida</h2>
-                    <p class="text-white-50 fs-16 mb-4 lh-relaxed">
-                        Conecte a central de acolhimento e a rede de suporte com criptografia ponta a ponta e resposta imediata.
-                    </p>
-
-                    <div class="d-flex flex-column gap-3 mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
-                            <span class="text-white fs-15">Autenticação com Criptografia de Ponta (Token JWT/Bearer)</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
-                            <span class="text-white fs-15">Webhooks e eventos de sincronização em tempo real</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="ri-checkbox-circle-line text-emerald-400 fs-20" style="color: var(--orion-emerald);"></i>
-                            <span class="text-white fs-15">Tratamento de dados com conformidade LGPD e sigilo absoluto</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Console de Código Interativo -->
-                <div class="col-lg-7">
-                    <div class="code-block p-4 shadow-2xl">
-                        <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-secondary border-opacity-25">
-                            <div class="d-flex gap-2">
-                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #ef4444;"></span>
-                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #f59e0b;"></span>
-                                <span class="rounded-circle d-inline-block" style="width: 12px; height: 12px; background: #10b981;"></span>
-                            </div>
-                            <span class="fs-12 text-white-50 fw-mono">GET /api/v1/preservacao/status</span>
-                            <button class="btn btn-sm btn-dark text-white-50 border-secondary px-3 py-1 fs-12" onclick="copyApiSnippet()">
-                                <i class="ri-file-copy-line me-1"></i> Copiar
-                            </button>
-                        </div>
-
-                        <pre class="m-0 text-emerald-400" style="color: #6ee7b7; overflow-x: auto;"><code>curl -X GET "http://localhost:5051/api/v1/preservacao/status" \
-  -H "Authorization: Bearer &lt;ORION_PRESERVATION_KEY&gt;" \
-  -H "Content-Type: application/json"
-
-# Resposta JSON (200 OK):
-{
-  "status": "preserved",
-  "data_integrity": "100%",
-  "support_network": "active",
-  "stealth_mode": "enabled",
-  "timestamp": "2026-08-20T20:53:00Z"
-}</code></pre>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
     <!-- Rodapé Oficial Elegante em Modo Escuro -->
-    <footer class="mt-auto py-5 border-top border-secondary border-opacity-25" style="background-color: #06090e;">
+    <footer class="mt-auto py-4 border-top border-secondary border-opacity-25" style="background-color: #06090e;">
         <div class="container px-4">
             
-            <div class="row g-4 pb-4 mb-4 border-bottom border-secondary border-opacity-10 align-items-center">
+            <div class="row g-4 pb-3 mb-3 border-bottom border-secondary border-opacity-10 align-items-center">
                 <div class="col-md-6">
-                    <div class="d-flex align-items-center gap-3 mb-2">
-                        <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="32" alt="CDC Logo">
-                        <span class="fs-20 fw-bold text-white tracking-wide">CDC <span style="color: var(--orion-emerald);">ORION</span></span>
+                    <div class="d-flex align-items-center gap-3 mb-1">
+                        <img src="{{ url_for('static', filename='images/logo-cdc-icon.png') }}" height="28" alt="CDC Logo">
+                        <span class="fs-18 fw-bold text-white tracking-wide">CDC <span style="color: var(--orion-emerald);">ORION</span></span>
                     </div>
-                    <p class="text-white-50 fs-14 mb-0">
+                    <p class="text-white-50 fs-13 mb-0">
                         A plataforma completa de preservação e acompanhamento para equipes do CDC.
                     </p>
                 </div>
 
                 <div class="col-md-6 text-md-end">
                     <div class="d-inline-flex align-items-center gap-4">
-                        <a href="tel:8132246963" class="text-decoration-none text-white-50 hover-text-white fs-14 d-flex align-items-center gap-2">
+                        <a href="tel:8132246963" class="text-decoration-none text-white-50 hover-text-white fs-13 d-flex align-items-center gap-2">
                             <i class="ri-phone-fill text-emerald-400" style="color: var(--orion-emerald);"></i>
                             <span>(81) 3224-6963</span>
                         </a>
-                        <a href="mailto:preservacao@cdc.org.br" class="text-decoration-none text-white-50 hover-text-white fs-14 d-flex align-items-center gap-2">
+                        <a href="mailto:preservacao@cdc.org.br" class="text-decoration-none text-white-50 hover-text-white fs-13 d-flex align-items-center gap-2">
                             <i class="ri-mail-fill text-emerald-400" style="color: var(--orion-emerald);"></i>
-                            <span>preservacao@cdc.org.br</span>
+                            <span>rh@cdc.org.br</span>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white-50 fs-13">
-                <div>
-                    CDC Relógio © 2026 Todos os direitos reservados · Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29
-                </div>
-                <div class="d-flex gap-4">
-                    <a href="#modulos" class="text-white-50 hover-text-white text-decoration-none">Recursos</a>
-                    <a href="#preservacao" class="text-white-50 hover-text-white text-decoration-none">Proteção Implícita</a>
-                    <a href="#apis" class="text-white-50 hover-text-white text-decoration-none">Conectividade</a>
-                </div>
+            <div class="text-center text-white-50 fs-12">
+                CDC Relógio © 2026 Todos os direitos reservados · Centro de Desenvolvimento e Cidadania - CDC · CNPJ 03.970.166/0001-29
             </div>
 
         </div>
@@ -625,72 +349,5 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    // Alternador do Modo Stealth (Proteção Implícita Discreta vs Administrativa)
-    function toggleStealthMode(switchEl) {
-        const isIntegrated = switchEl.checked;
-        
-        const cardTitle = document.getElementById('cardTitle');
-        const cardSubhead = document.getElementById('cardSubhead');
-        const cardStatusBadge = document.getElementById('cardStatusBadge');
-        
-        const m1Label = document.getElementById('m1Label');
-        const m1Value = document.getElementById('m1Value');
-
-        const m2Label = document.getElementById('m2Label');
-        const m2Value = document.getElementById('m2Value');
-
-        const m3Label = document.getElementById('m3Label');
-        const m3Value = document.getElementById('m3Value');
-
-        const cardFootnote = document.getElementById('cardFootnote');
-
-        if (isIntegrated) {
-            // Visão Administrativa / Central
-            cardSubhead.innerText = "Painel da Central de Acolhimento & Segurança";
-            cardTitle.innerText = "Monitor de Medidas Protetivas & Patrulha";
-            cardStatusBadge.innerText = "Status: Proteção Ativa & Encriptada";
-            cardStatusBadge.style.background = "rgba(6, 182, 212, 0.2)";
-            cardStatusBadge.style.color = "var(--orion-cyan)";
-            cardStatusBadge.style.borderColor = "rgba(6, 182, 212, 0.4)";
-
-            m1Label.innerText = "Medidas Protetivas";
-            m1Value.innerText = "12 Vigentes";
-
-            m2Label.innerText = "Unidades de Escolta";
-            m2Value.innerText = "3 Equipes em Campo";
-
-            m3Label.innerText = "Central de Emergência";
-            m3Value.innerText = "Linha Direta Operacional";
-
-            cardFootnote.innerHTML = '⚙️ <strong>Visão da Central de Operações:</strong> Exibe a terminologia técnica completa para agentes de proteção e equipes da central.';
-        } else {
-            // Visão Camuflada / Discreta
-            cardSubhead.innerText = "Visão de Rotina Preservada";
-            cardTitle.innerText = "Painel de Acompanhamento Diário";
-            cardStatusBadge.innerText = "Estado: 100% Estável";
-            cardStatusBadge.style.background = "rgba(16, 185, 129, 0.15)";
-            cardStatusBadge.style.color = "var(--orion-emerald)";
-            cardStatusBadge.style.borderColor = "rgba(16, 185, 129, 0.3)";
-
-            m1Label.innerText = "Check-in de Rotina";
-            m1Value.innerText = "Confirmado";
-
-            m2Label.innerText = "Rede de Suporte";
-            m2Value.innerText = "Ativa (3 Contatos)";
-
-            m3Label.innerText = "Perímetro Livre";
-            m3Value.innerText = "Verificado";
-
-            cardFootnote.innerHTML = '💡 <strong>Princípio de Proteção Não-Verbal:</strong> Os termos evitam palavras denunciantes como "Pânico", "Segurança", "Abrigo", "Polícia" ou "Processo", permitindo que o colaborador interaja em segurança mesmo sob observação indesejada.';
-        }
-    }
-
-    // Copiar trecho da API
-    function copyApiSnippet() {
-        const snippet = `curl -X GET "http://localhost:5051/api/v1/preservacao/status" -H "Authorization: Bearer <ORION_PRESERVATION_KEY>"`;
-        navigator.clipboard.writeText(snippet);
-        alert("Comando de API copiado para a área de transferência!");
-    }
 </script>
 {% endblock %}
