@@ -3,19 +3,19 @@
 {% block title %}Orion — Dashboard de Preservação & Governança{% endblock %}
 
 {% block content %}
-<div class="app-layout min-vh-100 position-relative" style="background-color: #090d16; color: #f3f4f6;">
+<div class="orion-layout-wrapper min-vh-100 position-relative" style="background-color: #090d16; color: #f3f4f6;">
     
-    <!-- Menu Lateral Retrátil no Hover (Fixado do topo até a base na esquerda - 75px) -->
+    <!-- Topbar Fixo (Fixado no topo absoluto: top: 0; left: 75px; right: 0; height: 60px) -->
+    {% include 'partials/topbar.html' %}
+
+    <!-- Menu Lateral Retrátil no Hover (Fixado na esquerda absoluta: top: 0; left: 0; bottom: 0; width: 75px) -->
     {% set active_page = 'dashboard' %}
     {% include "partials/sidebar.html" %}
 
-    <!-- Wrapper de Conteúdo Principal (À direita da Sidebar com margin-left: 75px) -->
-    <div class="main-content-wrapper d-flex flex-column min-vh-100" style="margin-left: 75px; transition: margin-left 0.35s ease;">
+    <!-- Área Principal de Conteúdo (Alinhada abaixo da topbar e à direita da sidebar) -->
+    <div class="orion-main-content-wrapper d-flex flex-column" style="margin-top: 60px !important; margin-left: 75px !important; min-height: calc(100vh - 60px);">
         
-        <!-- Topbar Fixo à Direita da Sidebar -->
-        {% include 'partials/topbar.html' %}
-
-        <!-- Conteúdo Principal -->
+        <!-- Conteúdo Interno do Dashboard -->
         <main class="p-4 flex-grow-1">
             
             {% with messages = get_flashed_messages(with_categories=true) %}
