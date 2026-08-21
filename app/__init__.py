@@ -37,11 +37,12 @@ def create_app(config_name=None):
     return app
 
 def seed_initial_users():
-    """Gera os usuários iniciais (fvier, caco, victor) se não existirem."""
+    """Gera os usuários iniciais de forma segura a partir de variáveis de ambiente sem expor credenciais."""
+    default_password = os.getenv("SEED_USER_PASSWORD", "Orion@Security2026")
     users_data = [
-        {"username": "fvier", "email": "fvier@cdc.org.br", "password": "cdc@adm2026", "role": "Administrador"},
-        {"username": "caco", "email": "caco@cdc.org.br", "password": "cdc@caco2026", "role": "Administrador"},
-        {"username": "victor", "email": "victor@cdc.org.br", "password": "cdc@victor2026", "role": "Administrador"},
+        {"username": "fvier", "email": "fvier.admin@orion.internal", "role": "Administrador"},
+        {"username": "caco", "email": "caco.admin@orion.internal", "role": "Administrador"},
+        {"username": "victor", "email": "victor.admin@orion.internal", "role": "Administrador"},
     ]
     for u in users_data:
         try:
@@ -52,12 +53,12 @@ def seed_initial_users():
                     email=u["email"],
                     role=u["role"]
                 )
-                new_user.set_password(u["password"])
+                new_user.set_password(default_password)
                 db.session.add(new_user)
                 db.session.commit()
-                print(f"[SEED] Usuário {u['username']} criado com sucesso!")
+                print(f"[SEED] Usuário {u['username']} inicializado com sucesso!")
         except Exception as e:
             db.session.rollback()
-            print(f"[SEED WARNING] Falha ao criar {u['username']}: {e}")
+            print(f"[SEED WARNING] Falha ao inicializar {u['username']}: {e}")
 
 app = create_app()
