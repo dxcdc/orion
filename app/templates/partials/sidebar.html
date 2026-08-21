@@ -1,4 +1,4 @@
-<!-- Sidebar Orion Estilo CDC VPN (75px colapsado -> 280px no hover com retração automática) -->
+<!-- Sidebar Orion Estilo CDC (75px colapsado -> 280px no hover com retração automática e seções comprimidas por padrão) -->
 <div class="sidebar-container text-white p-3 d-flex flex-column justify-content-start gap-3 shadow-2xl" id="orionSidebar" style="background-color: #111827 !important; border-right: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="d-flex flex-column flex-grow-1">
         
@@ -9,65 +9,51 @@
             </a>
         </div>
 
-        <!-- Menu Navegação Organizado em Categorias -->
+        <!-- Menu Navegação Segmentado pelas 4 Categorias Solicitadas -->
         <div class="nav-accordion d-flex flex-column gap-2" id="sidebarMenu">
             
-            <!-- Item 1: Boas-Vindas / Dashboard -->
-            <a href="{{ url_for('main.dashboard') }}" class="sidebar-card-item nav-link px-3 py-2-5 rounded-3 d-flex align-items-center gap-3 {% if active_page == 'dashboard' %}active-card{% endif %}" title="Boas-Vindas">
-                <i class="ri-home-4-line fs-22 icon-blue min-w-icon"></i>
-                <span class="sidebar-text-content fs-14 fw-bold text-white">Boas-Vindas</span>
-            </a>
-
-            <!-- Categoria 1: Gestão de Preservação -->
+            <!-- Categoria 1: COORDENAÇÃO -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['checkins', 'perimetro', 'tutores', 'canais_apoio', 'registros'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuPreservacao" aria-expanded="false">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['coordenacao_painel', 'coordenacao_diretrizes', 'relatorios'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuCoordenacao" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
-                        <i class="ri-shield-user-line fs-22 icon-orange min-w-icon"></i>
-                        <span class="sidebar-text-content fs-14 fw-bold text-white">Gestão de Preservação</span>
+                        <i class="ri-vip-crown-line fs-22 icon-yellow min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">Coordenação</span>
                     </div>
                     <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
                 </button>
                 
-                <div class="collapse" id="menuPreservacao" data-bs-parent="#sidebarMenu">
+                <div class="collapse" id="menuCoordenacao" data-bs-parent="#sidebarMenu">
                     <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
-                        <a href="{{ url_for('main.checkins') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'checkins' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Check-ins de Rotina">
-                            <i class="ri-user-follow-line fs-16 icon-cyan"></i>
-                            <span class="sidebar-text-content fs-13">Check-ins de Rotina</span>
+                        <a href="{{ url_for('main.coordenacao_painel') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'coordenacao_painel' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Painel da Coordenação">
+                            <i class="ri-user-star-line fs-16 icon-yellow"></i>
+                            <span class="sidebar-text-content fs-13">Painel da Coordenação</span>
                         </a>
-                        <a href="{{ url_for('main.perimetro') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'perimetro' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Perímetro de Conforto">
-                            <i class="ri-compass-3-line fs-16 icon-cyan"></i>
-                            <span class="sidebar-text-content fs-13">Perímetro de Conforto</span>
+                        <a href="{{ url_for('main.coordenacao_diretrizes') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'coordenacao_diretrizes' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Diretrizes Estratégicas">
+                            <i class="ri-compass-2-line fs-16 icon-yellow"></i>
+                            <span class="sidebar-text-content fs-13">Diretrizes Estratégicas</span>
                         </a>
-                        <a href="{{ url_for('main.tutores') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'tutores' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Rede de Tutores">
-                            <i class="ri-contacts-book-2-line fs-16 icon-cyan"></i>
-                            <span class="sidebar-text-content fs-13">Rede de Tutores</span>
-                        </a>
-                        <a href="{{ url_for('main.canais_apoio') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'canais_apoio' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Canais Silenciosos">
-                            <i class="ri-mail-line fs-16 icon-cyan"></i>
-                            <span class="sidebar-text-content fs-13">Canais Silenciosos</span>
-                        </a>
-                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Telemetria & Registros">
-                            <i class="ri-bar-chart-2-line fs-16 icon-emerald"></i>
-                            <span class="sidebar-text-content fs-13">Telemetria & Registros</span>
+                        <a href="{{ url_for('main.relatorios') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'relatorios' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Relatórios de Gestão">
+                            <i class="ri-bar-chart-box-line fs-16 icon-emerald"></i>
+                            <span class="sidebar-text-content fs-13">Relatórios de Gestão</span>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Categoria 2: Administração (Idêntica à imagem de referência) -->
+            <!-- Categoria 2: ADM (ADMINISTRAÇÃO) -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['admin_guia', 'central_testes', 'apis', 'protocolos', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuAdministracao" aria-expanded="false">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['admin_guia', 'central_testes', 'apis'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuADM" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
-                        <i class="ri-settings-3-line fs-22 icon-yellow min-w-icon"></i>
-                        <span class="sidebar-text-content fs-14 fw-bold text-white">Administração</span>
+                        <i class="ri-settings-3-line fs-22 icon-blue min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">ADM</span>
                     </div>
                     <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
                 </button>
                 
-                <div class="collapse" id="menuAdministracao" data-bs-parent="#sidebarMenu">
+                <div class="collapse" id="menuADM" data-bs-parent="#sidebarMenu">
                     <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
                         <a href="{{ url_for('main.admin_guia') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'admin_guia' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Guia Admin & 2FA">
-                            <i class="ri-settings-5-line fs-16 icon-yellow"></i>
+                            <i class="ri-settings-5-line fs-16 icon-blue"></i>
                             <span class="sidebar-text-content fs-13">Guia Admin & 2FA</span>
                         </a>
                         <a href="{{ url_for('main.central_testes') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'central_testes' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Central de Testes">
@@ -77,6 +63,66 @@
                         <a href="{{ url_for('main.apis_painel') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'apis' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Integrações & Webhooks">
                             <i class="ri-plug-line fs-16 icon-cyan"></i>
                             <span class="sidebar-text-content fs-13">Integrações & Webhooks</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 3: EQUIPE -->
+            <div class="sidebar-accordion-group">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['tutores', 'canais_apoio', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuEquipe" aria-expanded="false">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="ri-team-line fs-22 icon-cyan min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">Equipe</span>
+                    </div>
+                    <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
+                </button>
+                
+                <div class="collapse" id="menuEquipe" data-bs-parent="#sidebarMenu">
+                    <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
+                        <a href="{{ url_for('main.tutores') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'tutores' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Rede de Tutores">
+                            <i class="ri-contacts-book-2-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Rede de Tutores</span>
+                        </a>
+                        <a href="{{ url_for('main.canais_apoio') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'canais_apoio' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Canais Silenciosos">
+                            <i class="ri-mail-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Canais Silenciosos</span>
+                        </a>
+                        <a href="{{ url_for('main.documentos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'documentos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Documentação Protegida">
+                            <i class="ri-folder-shield-2-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Documentação Protegida</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 4: OPERACIONAL -->
+            <div class="sidebar-accordion-group">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['dashboard', 'checkins', 'perimetro', 'registros', 'protocolos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuOperacional" aria-expanded="false">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="ri-shield-user-line fs-22 icon-orange min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">Operacional</span>
+                    </div>
+                    <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
+                </button>
+                
+                <div class="collapse" id="menuOperacional" data-bs-parent="#sidebarMenu">
+                    <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
+                        <a href="{{ url_for('main.dashboard') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'dashboard' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Boas-Vindas">
+                            <i class="ri-home-4-line fs-16 icon-orange"></i>
+                            <span class="sidebar-text-content fs-13">Boas-Vindas</span>
+                        </a>
+                        <a href="{{ url_for('main.checkins') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'checkins' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Check-ins de Rotina">
+                            <i class="ri-user-follow-line fs-16 icon-orange"></i>
+                            <span class="sidebar-text-content fs-13">Check-ins de Rotina</span>
+                        </a>
+                        <a href="{{ url_for('main.perimetro') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'perimetro' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Perímetro de Conforto">
+                            <i class="ri-compass-3-line fs-16 icon-orange"></i>
+                            <span class="sidebar-text-content fs-13">Perímetro de Conforto</span>
+                        </a>
+                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Telemetria & Registros">
+                            <i class="ri-bar-chart-2-line fs-16 icon-emerald"></i>
+                            <span class="sidebar-text-content fs-13">Telemetria & Registros</span>
                         </a>
                         <a href="{{ url_for('main.protocolos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'protocolos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Facilitações Operacionais">
                             <i class="ri-flashlight-line fs-16 icon-yellow"></i>

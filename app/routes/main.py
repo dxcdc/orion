@@ -183,6 +183,40 @@ def central_testes():
                            active_page="central_testes",
                            items=items)
 
+@main_bp.route("/coordenacao/painel")
+def coordenacao_painel():
+    """Renderiza o Painel da Coordenação Geral."""
+    if not session.get("user"):
+        session["user"] = "fvier"
+    items = [
+        {"codigo": "CRD-501", "evento": "Supervisão de Casos de Acolhimento — Nível 1", "horario": "Em Acompanhamento", "status": "Ativo"},
+        {"codigo": "CRD-502", "evento": "Revisão de Protocolos de Contingência Institucional", "horario": "Sincronizado", "status": "Homologado"},
+        {"codigo": "CRD-503", "evento": "Auditoria de Integridade da Rede de Tutoria", "horario": "Trimestral", "status": "Concluído"},
+    ]
+    return render_template("modulo_preservacao.html", 
+                           title="Painel da Coordenação", 
+                           subtitle="Supervisão executiva, indicadores de acolhimento e tomada de decisão estratégica",
+                           icon="ri-user-star-line",
+                           active_page="coordenacao_painel",
+                           items=items)
+
+@main_bp.route("/coordenacao/diretrizes")
+def coordenacao_diretrizes():
+    """Renderiza as Diretrizes Estratégicas da Coordenação."""
+    if not session.get("user"):
+        session["user"] = "fvier"
+    items = [
+        {"codigo": "DIR-01", "evento": "Diretriz Geral de Sigilo e Não-Exposição", "horario": "Vigente 2026", "status": "Válido"},
+        {"codigo": "DIR-02", "evento": "Manual de Alocação de Recursos de Suporte", "horario": "Revisado", "status": "Aprovado"},
+        {"codigo": "DIR-03", "evento": "Protocolo de Intervenção em Situações Críticas", "horario": "Prontidão", "status": "Vigente"},
+    ]
+    return render_template("modulo_preservacao.html", 
+                           title="Diretrizes Estratégicas", 
+                           subtitle="Manuais de alta gestão, compliance e protocolos institucionais do CDC",
+                           icon="ri-compass-2-line",
+                           active_page="coordenacao_diretrizes",
+                           items=items)
+
 @main_bp.route("/api-info")
 def api_info():
     return jsonify({
