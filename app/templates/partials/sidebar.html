@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <!-- Menu Navegação Segmentado pelas 4 Categorias Solicitadas -->
+        <!-- Menu Navegação Organizado e Segmentado -->
         <div class="nav-accordion d-flex flex-column gap-2" id="sidebarMenu">
             
             <!-- Categoria 1: COORDENAÇÃO -->
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <!-- Categoria 2: ADM (ADMINISTRAÇÃO) -->
+            <!-- Categoria 2: ADM (ADMINISTRAÇÃO DE SISTEMAS) -->
             <div class="sidebar-accordion-group">
                 <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['admin_guia', 'central_testes', 'apis'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuADM" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
@@ -68,9 +68,37 @@
                 </div>
             </div>
 
-            <!-- Categoria 3: EQUIPE -->
+            <!-- Categoria 3: GOVERNANÇA & SISTEMAS (Antiga categoria Administração mantida com nome distinto) -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['tutores', 'canais_apoio', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuEquipe" aria-expanded="false">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['registros', 'protocolos', 'documentos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuGovernanca" aria-expanded="false">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="ri-shield-keyhole-line fs-22 icon-emerald min-w-icon"></i>
+                        <span class="sidebar-text-content fs-14 fw-bold text-white">Governança & Sistemas</span>
+                    </div>
+                    <i class="ri-arrow-down-s-line fs-16 text-white-50 sidebar-text-content transition-transform"></i>
+                </button>
+                
+                <div class="collapse" id="menuGovernanca" data-bs-parent="#sidebarMenu">
+                    <div class="nav flex-column gap-1 ps-4 pt-2 pb-1">
+                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Telemetria & Registros">
+                            <i class="ri-bar-chart-2-line fs-16 icon-emerald"></i>
+                            <span class="sidebar-text-content fs-13">Telemetria & Registros</span>
+                        </a>
+                        <a href="{{ url_for('main.protocolos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'protocolos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Facilitações Operacionais">
+                            <i class="ri-flashlight-line fs-16 icon-yellow"></i>
+                            <span class="sidebar-text-content fs-13">Facilitações Operacionais</span>
+                        </a>
+                        <a href="{{ url_for('main.documentos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'documentos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Documentação Protegida">
+                            <i class="ri-folder-shield-2-line fs-16 icon-cyan"></i>
+                            <span class="sidebar-text-content fs-13">Documentação Protegida</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 4: EQUIPE -->
+            <div class="sidebar-accordion-group">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['tutores', 'canais_apoio'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuEquipe" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
                         <i class="ri-team-line fs-22 icon-cyan min-w-icon"></i>
                         <span class="sidebar-text-content fs-14 fw-bold text-white">Equipe</span>
@@ -88,17 +116,13 @@
                             <i class="ri-mail-line fs-16 icon-cyan"></i>
                             <span class="sidebar-text-content fs-13">Canais Silenciosos</span>
                         </a>
-                        <a href="{{ url_for('main.documentos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'documentos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Documentação Protegida">
-                            <i class="ri-folder-shield-2-line fs-16 icon-cyan"></i>
-                            <span class="sidebar-text-content fs-13">Documentação Protegida</span>
-                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Categoria 4: OPERACIONAL -->
+            <!-- Categoria 5: OPERACIONAL -->
             <div class="sidebar-accordion-group">
-                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['dashboard', 'checkins', 'perimetro', 'registros', 'protocolos'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuOperacional" aria-expanded="false">
+                <button class="sidebar-card-item btn w-100 text-start px-3 py-2-5 rounded-3 d-flex align-items-center justify-content-between border-0 bg-transparent text-white collapsed {% if active_page in ['dashboard', 'checkins', 'perimetro'] %}active-card{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#menuOperacional" aria-expanded="false">
                     <div class="d-flex align-items-center gap-3">
                         <i class="ri-shield-user-line fs-22 icon-orange min-w-icon"></i>
                         <span class="sidebar-text-content fs-14 fw-bold text-white">Operacional</span>
@@ -119,14 +143,6 @@
                         <a href="{{ url_for('main.perimetro') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'perimetro' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Perímetro de Conforto">
                             <i class="ri-compass-3-line fs-16 icon-orange"></i>
                             <span class="sidebar-text-content fs-13">Perímetro de Conforto</span>
-                        </a>
-                        <a href="{{ url_for('main.registros') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'registros' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Telemetria & Registros">
-                            <i class="ri-bar-chart-2-line fs-16 icon-emerald"></i>
-                            <span class="sidebar-text-content fs-13">Telemetria & Registros</span>
-                        </a>
-                        <a href="{{ url_for('main.protocolos') }}" class="nav-link px-3 py-2 rounded-3 d-flex align-items-center gap-2 border-0 {% if active_page == 'protocolos' %}active-subitem{% else %}text-white-50 hover-subitem{% endif %}" title="Facilitações Operacionais">
-                            <i class="ri-flashlight-line fs-16 icon-yellow"></i>
-                            <span class="sidebar-text-content fs-13">Facilitações Operacionais</span>
                         </a>
                     </div>
                 </div>
